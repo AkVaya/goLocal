@@ -55,5 +55,3 @@ public class AfterLoginBuyer extends AppCompatActivity {
         }
     }
 }
-
-// thanks for contribution
