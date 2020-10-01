@@ -25,13 +25,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCTx);
         View view  = inflater.inflate(R.layout.view_product,null);
-        ProductAdapter.ProductViewHolder ProductViewHolder = new ProductAdapter.ProductViewHolder(view);
-        return ProductViewHolder;
+        return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product curr = productList.get(position);
+
         holder.textViewProduct.setText(curr.getName());
         holder.textViewQuantity.setText((curr.getQuantity()));
     }
@@ -41,12 +41,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productList.size();
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView textViewProduct,textViewQuantity;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.textViewProduct = (TextView) itemView.findViewById(R.id.textViewProduct);
-            this.textViewQuantity = (TextView) itemView.findViewById(R.id.textViewQuantity);
+            textViewProduct = (TextView) itemView.findViewById(R.id.textViewProduct);
+            textViewQuantity = (TextView) itemView.findViewById(R.id.textViewQuantity);
 
         }
     }

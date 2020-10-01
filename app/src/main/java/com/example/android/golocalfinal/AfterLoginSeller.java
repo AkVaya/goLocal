@@ -74,10 +74,6 @@ public class AfterLoginSeller extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-        if(mAuth.getCurrentUser() == null){
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        }
         mRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
