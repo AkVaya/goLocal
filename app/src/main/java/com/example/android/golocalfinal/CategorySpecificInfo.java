@@ -85,17 +85,19 @@ public class CategorySpecificInfo extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        if(mAuth.getCurrentUser() == null){
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        }
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Product product = dataSnapshot.getValue(Product.class);
-                    productList.add(product);
+                    String name="",quantity="";
+                    for(DataSnapshot temp : dataSnapshot.getChildren()){
+                        if(temp.getKey().equals("name"))
+                            name = temp.getValue().toString();
+                        if(temp.getKey().equals("quantity"))
+                            quantity = temp.getValue().toString();
+                    }
+                    productList.add(new Product(quantity,name));
                 }
                 ProductAdapter  adapter = new ProductAdapter(getApplicationContext(), productList);
                 recyclerView.setAdapter(adapter);

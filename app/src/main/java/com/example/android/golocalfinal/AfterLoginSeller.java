@@ -53,7 +53,6 @@ public class AfterLoginSeller extends AppCompatActivity {
         buttonAdd = (Button) findViewById(R.id.buttonAddNewCategory);
         intent = getIntent();
         mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(intent.getExtras().getString(EMAIL_ID).replace('.',',')).child("PRODUCTS");
-        mRef2 = mRef.child("categoryName");
         editTextCategory = (EditText) findViewById(R.id.editTextCategoryName);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +73,17 @@ public class AfterLoginSeller extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-        mRef2.addValueEventListener(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 categoryList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String categoryName = dataSnapshot.getValue().toString();
-                    categoryList.add(new Category(categoryName));
+                    for(DataSnapshot curr : dataSnapshot.getChildren()){
+                        if(curr.getKey().equals("categoryName")){
+                            String categoryName = curr.getValue().toString();
+                            categoryList.add(new Category(categoryName));
+                        }
+                    }
                 }
                 CategoryAdapter  adapter = new CategoryAdapter(getApplicationContext(), categoryList, new CategoryAdapter.onNoteListener() {
                     @Override
