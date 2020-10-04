@@ -9,15 +9,6 @@
     tools:overrideLibrary="com.google.firebase.auth">
 
 
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="506dp"
-        android:layout_height="278dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/frame" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarForLogout"
         android:layout_width="0dp"
@@ -28,6 +19,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="506dp"
+        android:layout_height="278dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/frame" />
+
+    <ImageView
+        android:id="@+id/addProductImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextProductName"
+        app:srcCompat="@drawable/camera_1" />
 
     <Button
         android:id="@+id/buttonAddNewProduct"
@@ -49,6 +59,17 @@
         android:hint="Enter Quantity Available"
         android:inputType="number"
         android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
+    <EditText
+        android:id="@+id/editTextPrice"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:hint="Enter Price"
+        android:inputType="number"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/editTextProductDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addProductImage" />
@@ -62,9 +83,21 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/editTextQuantityAvailable"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addProductImage">
+        app:layout_constraintStart_toEndOf="@+id/addProductImage"/>
 
-    </EditText>
+
+    <EditText
+        android:id="@+id/editTextProductDescription"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="Enter Product Description"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddNewProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
 
     <TextView
         android:id="@+id/textViewCategoryName"
@@ -87,34 +120,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextProductName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarForLogout"
         app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/addProductImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextProductName"
-        app:srcCompat="@drawable/camera_1" />
-
-    <EditText
-        android:id="@+id/editTextProductDescription"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="Enter Product Description"
-        android:inputType="textPersonName"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddNewProduct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

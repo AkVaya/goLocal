@@ -71,6 +71,15 @@
                 android:textColor="#7FE22A"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textViewDescription"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textViewDescription"
                 app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
