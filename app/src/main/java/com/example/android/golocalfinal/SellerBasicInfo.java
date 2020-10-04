@@ -33,7 +33,7 @@ public class SellerBasicInfo extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seller_basic_info);
+        setContentView(R.layout.seller_basic_info_final);
         outletAddress = (EditText) findViewById(R.id.outletAddress);
         outletName = (EditText) findViewById(R.id.outletName);
         outletCity = (EditText) findViewById(R.id.outletCity);

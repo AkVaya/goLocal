@@ -31,7 +31,7 @@ public class BuyerBasicInfo extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buyer_basic_info);
+        setContentView(R.layout.buyer_basic_info_final);
         userAddress = (EditText) findViewById(R.id.userAddress);
         userName = (EditText) findViewById(R.id.userName);
         userCity = (EditText) findViewById(R.id.userCity);

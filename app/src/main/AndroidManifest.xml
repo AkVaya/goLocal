@@ -9,26 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".SplashScreen"/>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity">
-        </activity>
-        <activity android:name=".AfterLoginSeller">
-        </activity>
-        <activity android:name=".AfterLoginBuyer">
-        </activity>
-        <activity android:name=".SellerBasicInfo">
-        </activity>
-        <activity android:name=".BuyerBasicInfo">
-        </activity>
-        <activity android:name=".CategorySpecificInfo">
-        </activity>
+        <activity android:name=".SignUpActivity"
+            android:label="Sign Up"></activity>
+        <activity android:name=".AfterLoginSeller"></activity>
+        <activity android:name=".AfterLoginBuyer"></activity>
+        <activity android:name=".SellerBasicInfo"></activity>
+        <activity android:name=".BuyerBasicInfo"></activity>
+        <activity android:name=".CategorySpecificInfo"></activity>
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

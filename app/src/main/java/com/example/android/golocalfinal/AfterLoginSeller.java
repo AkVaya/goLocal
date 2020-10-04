@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +35,7 @@ public class AfterLoginSeller extends AppCompatActivity {
     RecyclerView recyclerView;
     EditText editTextCategory;
     List<Category>categoryList;
-    Button buttonAdd;
+    ImageView buttonAdd;
     Intent intent;
 
     static final public String CATEGORY_NAME = "CATEGORY_NAME", EMAIL_ID="EMAIL_ID",POSITION="POSITION";
@@ -50,7 +51,7 @@ public class AfterLoginSeller extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         categoryList = new ArrayList<>();
-        buttonAdd = (Button) findViewById(R.id.buttonAddNewCategory);
+        buttonAdd = (ImageView) findViewById(R.id.buttonAddNewCategory);
         intent = getIntent();
         mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(intent.getExtras().getString(EMAIL_ID).replace('.',',')).child("PRODUCTS");
         editTextCategory = (EditText) findViewById(R.id.editTextCategoryName);

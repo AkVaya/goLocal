@@ -1,114 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:overrideLibrary="com.google.firebase.auth"
-    >
+    android:id="@+id/relativeLayout">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarForLogout"
-        android:layout_width="match_parent"
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#b3e5fc">
+        android:hint="Your Name"
+        android:inputType="text"
+        tools:ignore="MissingConstraints" />
 
-    </androidx.appcompat.widget.Toolbar>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/userAddress"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Enter your details here:"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColor="@android:color/black"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            >
+        android:fontFamily="sans-serif"
+        android:hint="Your Address"
+        android:inputType="textLongMessage"
+        android:paddingBottom="15dp"
+        android:textColorHint="@android:color/black"
+        tools:layout_conversion_absoluteHeight="49dp"
+        tools:layout_editor_absoluteY="324dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_conversion_absoluteWidth="382dp" />
 
-        </TextView>
+    <EditText
+        android:id="@+id/userCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Your City"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="15dp"
+        android:textColorHint="@android:color/black"
+        tools:layout_conversion_absoluteHeight="49dp"
+        tools:layout_editor_absoluteY="398dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_conversion_absoluteWidth="382dp" />
 
-        <EditText
-            android:id="@+id/userName"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:hint="Your Name"
-            android:inputType="text"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColorHint="@android:color/black"
-            />
+    <EditText
+        android:id="@+id/userNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:hint="Mobile Number"
+        android:inputType="number"
+        android:paddingBottom="15dp"
+        android:textColorHint="@android:color/black"
+        tools:layout_conversion_absoluteHeight="49dp"
+        tools:layout_editor_absoluteY="472dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_conversion_absoluteWidth="382dp" />
 
-        <EditText
-            android:id="@+id/userAddress"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:hint="Your Address"
-            android:inputType="textLongMessage"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColorHint="@android:color/black"
-            />
-        <EditText
-            android:id="@+id/userCity"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:hint="Your City"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColorHint="@android:color/black"
-            />
-        <EditText
-            android:id="@+id/userNumber"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:hint="Mobile Number"
-            android:inputType="number"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColorHint="@android:color/black"
-            />
-
-    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:layout_conversion_absoluteHeight="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="0dp" />
 
     <Button
         android:id="@+id/buttonConfirm"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button_transparent"
         android:gravity="center_horizontal"
         android:padding="15dp"
         android:text="Confirm Details"
-        android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        />
+        android:textColor="@android:color/black"
+        tools:layout_conversion_absoluteHeight="54dp"
+        tools:layout_conversion_absoluteWidth="411dp"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="570dp" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
