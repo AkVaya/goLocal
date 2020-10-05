@@ -53,7 +53,7 @@ public class AfterLoginSeller extends AppCompatActivity {
         categoryList = new ArrayList<>();
         buttonAdd = (ImageView) findViewById(R.id.buttonAddNewCategory);
         intent = getIntent();
-        mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(intent.getExtras().getString(EMAIL_ID).replace('.',',')).child("PRODUCTS");
+        mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(intent.getExtras().getString(EMAIL_ID).replace('.',',')).child("CATEGORIES");
         editTextCategory = (EditText) findViewById(R.id.editTextCategoryName);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -27,7 +27,7 @@ import java.util.List;
 import static com.example.android.golocalfinal.AfterLoginSeller.CATEGORY_NAME;
 
 public class CategorySpecificInfo extends AppCompatActivity {
-    EditText editTextProductName,editTextQuantity;
+    EditText editTextProductName,editTextQuantity,editTextPrice,editTextDescription;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     Toolbar toolbar ;
@@ -46,6 +46,8 @@ public class CategorySpecificInfo extends AppCompatActivity {
 
         editTextProductName = (EditText) findViewById(R.id.editTextProductName);
         editTextQuantity = (EditText) findViewById(R.id.editTextQuantityAvailable);
+        editTextPrice = (EditText) findViewById(R.id.editTextPrice);
+        editTextDescription = (EditText) findViewById(R.id.editTextProductDescription);
         toolbar = findViewById(R.id.toolbarForLogout);
         setSupportActionBar(toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewProducts);
@@ -58,14 +60,15 @@ public class CategorySpecificInfo extends AppCompatActivity {
         textViewCategory.setText(intent.getExtras().getString(CATEGORY_NAME));
         String email = intent.getExtras().getString(SellerBasicInfo.EMAIL_ID);
         String email2 = email.replace('.',',');
-        String category = intent.getExtras().getString(CATEGORY_NAME);
-        mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(email2).child("PRODUCTS").child(String.valueOf(intent.getExtras().get(AfterLoginSeller.POSITION))).child(category);
+        mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(email2).child("CATEGORIES").child(String.valueOf(intent.getExtras().get(AfterLoginSeller.POSITION))).child("PRODUCTS");
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String qty = (editTextQuantity.getText().toString());
                 String ProductName = editTextProductName.getText().toString().trim();
+                String price = editTextPrice.getText().toString();
+                String description = editTextDescription.getText().toString().trim();
                 if(ProductName.length()==0){
                     editTextProductName.setError("Product Name can't be empty");
                     editTextProductName.requestFocus();
@@ -75,8 +78,7 @@ public class CategorySpecificInfo extends AppCompatActivity {
                     editTextQuantity.requestFocus();
                 }
                 else{
-                    productList.add(new Product(qty,ProductName));
-                    int x = productList.size();
+                    productList.add(new Product(qty,ProductName,price,description));
                     mRef.setValue(productList);
                 }
             }
@@ -84,22 +86,27 @@ public class CategorySpecificInfo extends AppCompatActivity {
     }
 
     protected void onStart() {
+
         super.onStart();
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String name="",quantity="";
+                    String name="",quantity="",price="",description="";
                     for(DataSnapshot temp : dataSnapshot.getChildren()){
                         if(temp.getKey().equals("name"))
                             name = temp.getValue().toString();
                         if(temp.getKey().equals("quantity"))
                             quantity = temp.getValue().toString();
+                        if(temp.getKey().equals("price"))
+                            price = temp.getValue().toString();
+                        if(temp.getKey().equals("desc"))
+                            description = temp.getValue().toString();
                     }
-                    productList.add(new Product(quantity,name));
+                    productList.add(new Product(quantity,name,price,description));
                 }
-                ProductAdapter  adapter = new ProductAdapter(getApplicationContext(), productList);
+                ProductAdapter adapter = new ProductAdapter(getApplicationContext(), productList);
                 recyclerView.setAdapter(adapter);
             }
 

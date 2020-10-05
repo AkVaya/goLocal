@@ -34,6 +34,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.textViewProduct.setText(curr.getName());
         holder.textViewQuantity.setText((curr.getQuantity()));
+        holder.textViewPrice.setText(curr.getPrice());
+        holder.textViewDescription.setText(curr.getDesc());
     }
 
     @Override
@@ -42,12 +44,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewProduct,textViewQuantity;
+        TextView textViewProduct,textViewQuantity,textViewPrice,textViewDescription;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewProduct = (TextView) itemView.findViewById(R.id.textViewProduct);
             textViewQuantity = (TextView) itemView.findViewById(R.id.textViewQuantity);
-
+            textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
+            textViewDescription = (TextView) itemView.findViewById(R.id.textViewDescription);
         }
     }
 }
