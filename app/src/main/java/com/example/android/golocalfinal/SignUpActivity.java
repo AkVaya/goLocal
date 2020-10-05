@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,8 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     ProgressBar progressBar;
-    Button buyer,seller,login;
+    Button buyer,seller;
+    TextView login;
     static final public String EMAIL_ID="EMAIL_ID",PASSWORD="PASSWORD";
 
     @Override
@@ -33,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         buyer = (Button) findViewById(R.id.buttonSignUpBuyer);
         seller = (Button) findViewById(R.id.buttonSignUpSeller);
-        login = (Button) findViewById(R.id.buttonLogin);
+        login = (TextView) findViewById(R.id.login);
         buyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +46,12 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SellerLogin();
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
 

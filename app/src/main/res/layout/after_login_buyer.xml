@@ -12,7 +12,7 @@
         android:id="@+id/toolbarForLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#b3e5fc">
+        android:background="#6B6AA9">
 
     </androidx.appcompat.widget.Toolbar>
 

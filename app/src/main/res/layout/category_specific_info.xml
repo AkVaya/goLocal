@@ -1,73 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:overrideLibrary="com.google.firebase.auth"
-    >
+    android:background="#D9C4C4C4"
+    tools:overrideLibrary="com.google.firebase.auth">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarForLogout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#b3e5fc">
+        android:background="#6B6AA9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="506dp"
+        android:layout_height="278dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/frame" />
+
+    <ImageView
+        android:id="@+id/addProductImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/toolbarForLogout"
-        >
-        <EditText
-            android:id="@+id/editTextProductName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Product name"
-            >
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextProductName"
+        app:srcCompat="@drawable/camera_1" />
 
-        </EditText>
+    <Button
+        android:id="@+id/buttonAddNewProduct"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:backgroundTint="#7FE22A"
+        android:text="Add Product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextQuantityAvailable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Quantity Available"
-            android:inputType="number"
-            >
-        </EditText>
-        <Button
-            android:id="@+id/buttonAddNewProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Category"
-            android:background="@drawable/rounded_button_transparent"
-            >
-        </Button>
+    <EditText
+        android:id="@+id/editTextQuantityAvailable"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:hint="Enter Quantity Available"
+        android:inputType="number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
+    <EditText
+        android:id="@+id/editTextPrice"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:hint="Enter Price"
+        android:inputType="number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/editTextProductDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
 
-        <TextView
-            android:id="@+id/textViewCategoryName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:text="Categories of items sold"
-            >
-        </TextView>
+    <EditText
+        android:id="@+id/editTextProductName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:hint="Enter Product name"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/editTextQuantityAvailable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage"/>
 
-        <androidx.recyclerview.widget.RecyclerView
 
-            android:id="@+id/recyclerViewProducts"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+    <EditText
+        android:id="@+id/editTextProductDescription"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="Enter Product Description"
+        android:inputType="textPersonName"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddNewProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addProductImage" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/quicksand"
+        android:text="List of Products"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarForLogout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recyclerViewProducts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextProductName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarForLogout"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
