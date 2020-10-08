@@ -24,14 +24,9 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         >
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Padharo Buyer bhaiya"
-            android:paddingBottom="15dp"
-            android:layout_marginBottom="25dp"
-            android:textColor="@android:color/black"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            />
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </LinearLayout>

@@ -7,15 +7,13 @@
     android:orientation="vertical"
     tools:overrideLibrary="com.google.firebase.auth"
     android:layout_margin="10dp"
-    android:background=""
     >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        >
+        android:padding="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

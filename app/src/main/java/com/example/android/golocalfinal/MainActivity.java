@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-    /*protected void onStart() {
+    protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null){
             Login();
         }
-    }*/
+    }
 
     private void userLogin() {
         String Email = editTextEmail.getText().toString().trim();
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity{
             editTextPassword.requestFocus();
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -113,18 +114,18 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String val = (String) snapshot.getValue();
-
+                progressBar.setVisibility(View.GONE);
                 if(val.equals("BUYER")){
                     Intent intent = new Intent(MainActivity.this, AfterLoginBuyer.class);
                     startActivity(intent);
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                 }
                 else{
-                    DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference();
                     Intent intent = new Intent(getApplicationContext(), AfterLoginSeller.class);
                     intent.putExtra(EMAIL_ID,mUser.getEmail());
                     intent.putExtra(ACTIVITY_NAME,"MAIN");
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    finish();
                     startActivity(intent);
                 }
             }
