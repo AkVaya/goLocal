@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:overrideLibrary="com.google.firebase.auth">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:overrideLibrary="com.google.firebase.auth"
+    android:layout_margin="10dp"
+    android:background=""
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            >
 
             <ImageView
                 android:id="@+id/productImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/camera_1" />
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:src="@drawable/camera_1"
+                />
 
             <TextView
                 android:id="@+id/textViewProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/productImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_toRightOf="@id/productImage">
+            </TextView>
 
             <TextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                app:layout_constraintStart_toStartOf="@+id/textViewProduct"
-                app:layout_constraintTop_toBottomOf="@+id/textViewProduct" />
+                android:layout_below="@id/textViewProduct"
+                android:layout_toRightOf="@id/productImage"
+                >
+            </TextView>
 
             <TextView
                 android:id="@+id/textViewQuantity"
@@ -60,8 +57,11 @@
                 android:text="Quantity"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toTopOf="@+id/textView7"></TextView>
+                android:layout_below="@id/textViewPrice"
+                android:layout_toRightOf="@id/textView7"
+                >
+
+            </TextView>
 
             <TextView
                 android:id="@+id/textView7"
@@ -70,8 +70,8 @@
                 android:text="Available Quantity"
                 android:textColor="#7FE22A"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textViewDescription"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+                android:layout_below="@id/textViewPrice"
+                android:layout_toRightOf="@id/productImage"/>
 
             <TextView
                 android:id="@+id/textViewPrice"
@@ -79,11 +79,9 @@
                 android:layout_height="wrap_content"
                 android:text="Price"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/textViewDescription"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:layout_below="@id/textViewDescription"
+                android:layout_toRightOf="@id/productImage"
+                />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
