@@ -41,36 +41,37 @@
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/editTextCategoryName"
         app:layout_constraintTop_toTopOf="@+id/editTextCategoryName"
-        app:srcCompat="@drawable/add_circle_24px_1" />
+        app:srcCompat="@drawable/add_circle_24px_1__1_" />
+
 
     <TextView
         android:id="@+id/textViewHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/quicksand"
         android:text="Select Category to add/remove Products"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarForLogout" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCategoryName" />
 
     <EditText
         android:id="@+id/editTextCategoryName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="15dp"
         android:hint="Add a New Category"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarForLogout">
 
     </EditText>
-
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -78,14 +79,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextCategoryName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeading"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
