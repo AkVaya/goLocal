@@ -16,18 +16,11 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:text="YAHA SHOP K Products aaenge"
         >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewShop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+
+    </TextView>
 </LinearLayout>
