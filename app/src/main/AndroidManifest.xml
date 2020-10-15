@@ -10,8 +10,29 @@
         android:roundIcon="@drawable/appiconround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:parentActivityName=".SplashScreen"/>
+        <activity
+            android:name=".OrdersReceived"
+            android:label="@string/title_activity_orders_received1"
+            android:parentActivityName=".AfterLoginSeller"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".EditSellerProfile"
+            android:label="Edit Profile Details"
+            android:parentActivityName=".ViewSellerProfile"></activity>
+        <activity
+            android:name=".ViewSellerProfile"
+            android:label="My Profile"
+            android:parentActivityName=".AfterLoginSeller" />
+        <activity
+            android:name=".Developers"
+            android:label="Developers Info" />
+
+        <activity
+            android:name=".About"
+            android:label="About" />
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".SplashScreen" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,23 +40,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"
-            android:label="Sign Up"/>
-
-        <activity android:name=".AfterLoginSeller"
-            android:label="Add Categories"/>
-
-        <activity android:name=".AfterLoginBuyer"/>
-
-        <activity android:name=".SellerBasicInfo"/>
-
-        <activity android:name=".BuyerBasicInfo"/>
-
-        <activity android:name=".CategorySpecificInfo"
-            android:label="Add Products"
-            android:parentActivityName=".AfterLoginSeller"/>
-
-        <activity android:name=".ShopSpecificInfo"
+        <activity
+            android:name=".SignUpActivity"
+            android:label="Sign Up" />
+        <activity
+            android:name=".AfterLoginSeller"
+            android:label="Categories of Products" />
+        <activity android:name=".AfterLoginBuyer" />
+        <activity android:name=".SellerBasicInfo" />
+        <activity android:name=".BuyerBasicInfo" />
+        <activity
+            android:name=".CategorySpecificInfo"
+            android:label="Add/View Products"
+            android:parentActivityName=".AfterLoginSeller" />
+        <activity
+            android:name=".ShopSpecificInfo"
             tools:ignore="DuplicateActivity" />
 
         <meta-data

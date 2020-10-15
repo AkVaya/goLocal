@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -112,6 +111,21 @@ public class AfterLoginSeller extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(AfterLoginSeller.this,MainActivity.class));
                 break;
+
+            case R.id.about :
+                startActivity(new Intent(AfterLoginSeller.this, About.class));
+                break;
+
+            case R.id.myOrders :
+                startActivity(new Intent(AfterLoginSeller.this, OrdersReceived.class));
+                break;
+
+            case R.id.developers :
+                startActivity(new Intent(AfterLoginSeller.this, Developers.class));
+                break;
+            case R.id.viewProfile :
+                startActivity(new Intent(AfterLoginSeller.this, ViewSellerProfile.class));
+
         }
         return true;
     }

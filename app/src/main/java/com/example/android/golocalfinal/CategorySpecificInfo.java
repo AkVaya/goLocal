@@ -81,10 +81,10 @@ public class CategorySpecificInfo extends AppCompatActivity {
                     productList.add(new Product(qty,ProductName,price,description));
                     mRef.setValue(productList);
                 }
-              /*  editTextDescription.setText(null);
+                editTextDescription.setText(null);
                 editTextPrice.setText(null);
                 editTextProductName.setText(null);
-                editTextQuantity.setText(null);  */
+                editTextQuantity.setText(null);
 
             }
         });
