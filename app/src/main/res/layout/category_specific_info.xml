@@ -5,31 +5,9 @@
     android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D9C4C4C4"
+    android:background="#ffffff"
     tools:overrideLibrary="com.google.firebase.auth">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarForLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#6B6AA9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ImageView
-        android:id="@+id/addProductImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextProductName"
-        app:srcCompat="@drawable/camera_1" />
 
     <Button
         android:id="@+id/buttonAddNewProduct"
@@ -66,7 +44,6 @@
         app:layout_constraintStart_toEndOf="@+id/addProductImage"
         app:layout_constraintTop_toBottomOf="@+id/editTextQuantityAvailable" />
 
-
     <EditText
         android:id="@+id/editTextProductName"
         android:layout_width="250dp"
@@ -91,6 +68,18 @@
         app:layout_constraintStart_toEndOf="@+id/addProductImage"
         app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
 
+
+    <ImageView
+        android:id="@+id/addProductImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextProductName"
+        app:srcCompat="@drawable/camera_1" />
+
     <TextView
         android:id="@+id/textViewCategoryName"
         android:layout_width="wrap_content"
@@ -106,6 +95,17 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddNewProduct" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarForLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#6B6AA9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
 
