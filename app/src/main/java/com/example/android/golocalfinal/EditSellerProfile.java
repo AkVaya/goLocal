@@ -39,6 +39,7 @@ public class EditSellerProfile extends AppCompatActivity {
         confirmChanges = (Button) findViewById(R.id.button);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        setDetails();
         ConfirmChanges();
 
 
@@ -57,18 +58,24 @@ public class EditSellerProfile extends AppCompatActivity {
                 String owner = ownerName.getText().toString().trim();
                 String number = ownerNumber.getText().toString().trim();
 
-                if(name.isEmpty())
+                if(name.isEmpty()){
                     shopName.setError("This field cannot remain empty");
-                if(address.isEmpty())
+                    return;}
+                if(address.isEmpty()){
                     shopAddress.setError("This field cannot remain empty");
-                if(city.isEmpty())
+                return;}
+                if(city.isEmpty()){
                     shopCity.setError("This field cannot remain empty");
-                if(locality.isEmpty())
+                return;}
+                if(locality.isEmpty()){
                     shopLocality.setError("This field cannot remain empty");
-                if(owner.isEmpty())
+                    return;}
+                if(owner.isEmpty()){
                     ownerName.setError("This field cannot remain empty");
-                if(number.isEmpty())
+                    return;}
+                if(number.isEmpty()){
                     ownerNumber.setError("This field cannot remain empty");
+                    return;}
 
                 String Email = mUser.getEmail();
                 String email2 = Email.replace('.', ',');
@@ -89,6 +96,41 @@ public class EditSellerProfile extends AppCompatActivity {
 
     }
 
+    public void setDetails(){
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        String email = user.getEmail();
+        final String email2 = email.replace(".",",");
+        FirebaseDatabase.getInstance().getReference().child("SELLERS").child(email2).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String Name = snapshot.child("outletName").getValue().toString();
+                String City = snapshot.child("outletCity").getValue().toString();
+                String Address = snapshot.child("outletAddress").getValue().toString();
+                String Locality = snapshot.child("outletLocality").getValue().toString();
+                String outletNumber = snapshot.child("outletNumber").getValue().toString();
+                String outletContactName = snapshot.child("outletContactName").getValue().toString();
+
+                shopName.setText(Name);
+                shopCity.setText(City);
+                shopAddress.setText(Address);
+                shopLocality.setText(Locality);
+                ownerNumber.setText(outletNumber);
+                ownerName.setText(outletContactName);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+    }
 
 
 }
