@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:overrideLibrary="com.google.firebase.auth"
-    >
+    tools:overrideLibrary="com.google.firebase.auth">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -22,59 +21,61 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/productImage"
+                android:id="@+id/productImageBuyer"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
                 android:src="@drawable/camera_1" />
 
             <TextView
-                android:id="@+id/textViewProduct"
+                android:id="@+id/textViewProductBuyer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_toRightOf="@id/productImage"
+                android:layout_toRightOf="@id/productImageBuyer"
                 android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
-
-            <TextView
-                android:id="@+id/textViewDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewProduct"
-                android:layout_toRightOf="@id/productImage"
-                android:text="Description"></TextView>
-
-            <TextView
-                android:id="@+id/textViewQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewPrice"
-                android:layout_marginStart="8dp"
-                android:layout_toRightOf="@id/textView7"
-                android:text="Quantity"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="20sp">
-
+                android:textAppearance="@style/TextAppearance.AppCompat.Large">
             </TextView>
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/textViewDescriptionBuyer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewPrice"
-                android:layout_toRightOf="@id/productImage"
-                android:text="Available Quantity"
+                android:layout_below="@id/textViewProductBuyer"
+                android:layout_toRightOf="@id/productImageBuyer"
+                android:text="Description">
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/textViewRs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewDescriptionBuyer"
+                android:layout_toRightOf="@id/productImageBuyer"
+                android:text="Rs"
                 android:textColor="#569A1C"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewPrice"
+                android:id="@+id/textViewPriceBuyer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewDescription"
-                android:layout_toRightOf="@id/productImage"
+                android:layout_below="@id/textViewDescriptionBuyer"
+                android:layout_toRightOf="@id/textViewRs"
                 android:text="Price"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                />
+
+            <Button
+                android:id="@+id/buttonAddToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to cart"
+                android:layout_centerInParent="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
