@@ -71,6 +71,7 @@
 
     <ImageView
         android:id="@+id/addProductImage"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/editTextProductDescription"
@@ -82,23 +83,30 @@
 
     <TextView
         android:id="@+id/textViewCategoryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:backgroundTint="#B98E95CF"
         android:fontFamily="@font/quicksand"
+        android:gravity="center_vertical"
         android:text="vaya"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewProduct" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewProduct"
+        tools:ignore="RtlCompat" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarForLogout"
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
         android:background="#6B6AA9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,20 +115,27 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/recyclerViewProducts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="15dp"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCategoryName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recyclerViewProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp" />
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
