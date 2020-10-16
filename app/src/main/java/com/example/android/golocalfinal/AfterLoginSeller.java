@@ -63,6 +63,7 @@ public class AfterLoginSeller extends AppCompatActivity {
                 if(category.length()!=0){
                     categoryList.add(new Category(category));
                     mRef.setValue(categoryList);
+                    editTextCategory.setText(null);
                 }
                 else{
                     editTextCategory.setError("Name of category can't be empty");
