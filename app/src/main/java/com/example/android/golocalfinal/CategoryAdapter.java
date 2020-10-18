@@ -16,6 +16,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     List<Category> categoryList;
     private onNoteListener monNoteListener;
 
+
     public CategoryAdapter(Context mCTx, List<Category> categoryList,onNoteListener onNoteListener) {
         this.mCTx = mCTx;
         this.categoryList = categoryList;
@@ -42,7 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoryList.size();
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener  {
         TextView textViewCategory;
         onNoteListener onNoteListener;
         public CategoryViewHolder(@NonNull View itemView,onNoteListener onNoteListener) {
@@ -50,15 +51,30 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             this.textViewCategory = (TextView) itemView.findViewById(R.id.textViewCategory);
             this.onNoteListener = onNoteListener;
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             onNoteListener.onNoteClick(getLayoutPosition());
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            onNoteListener.onLongClick(getLayoutPosition());
+
+
+            return false;
+        }
     }
 
     public interface onNoteListener{
         void onNoteClick(int position);
+        void onLongClick(int position);
     }
+
+
+
+
+
 }

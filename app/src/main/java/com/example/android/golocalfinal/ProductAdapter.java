@@ -14,10 +14,12 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     Context mCTx;
     List<Product> productList;
+    private clickHandler mClickHandler;
 
-    public ProductAdapter(Context mCTx, List<Product> productList) {
+    public ProductAdapter(Context mCTx, List<Product> productList,clickHandler clickHandler) {
         this.mCTx = mCTx;
         this.productList = productList;
+        this.mClickHandler = clickHandler;
     }
 
     @NonNull
@@ -27,7 +29,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         View view  = inflater.inflate(R.layout.view_product,null);
       //  LayoutInflater.from(parent.getContext()).inflate(R.layout.category_specific_info, parent, false);
-        return new ProductViewHolder(view);
+        ProductViewHolder productViewHolder = new ProductViewHolder(view, mClickHandler);
+        return productViewHolder;
     }
 
     @Override
@@ -45,14 +48,28 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productList.size();
     }
 
-    static class ProductViewHolder extends RecyclerView.ViewHolder {
+    static class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
         TextView textViewProduct,textViewQuantity,textViewPrice,textViewDescription;
-        public ProductViewHolder(@NonNull View itemView) {
+        ProductAdapter.clickHandler clickHandler;
+        public ProductViewHolder(@NonNull View itemView,clickHandler clickHandler) {
             super(itemView);
             textViewProduct = (TextView) itemView.findViewById(R.id.textViewProduct);
             textViewQuantity = (TextView) itemView.findViewById(R.id.textViewQuantity);
             textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
             textViewDescription = (TextView) itemView.findViewById(R.id.textViewDescription);
+            this.clickHandler = clickHandler;
+            itemView.setOnLongClickListener(this);
         }
+        @Override
+        public boolean onLongClick(View view) {
+            clickHandler.onLongClick(getLayoutPosition());
+            return false;
+        }
+
+    }
+
+
+    public interface clickHandler{
+        void onLongClick(int position);
     }
 }
