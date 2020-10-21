@@ -11,6 +11,18 @@ public class ProductBuyer {
         Desc = desc;
     }
 
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+    public void setDesc(String desc) {
+        Desc = desc;
+    }
+
     public String getName() {
         return Name;
     }

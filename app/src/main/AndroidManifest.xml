@@ -10,15 +10,16 @@
         android:roundIcon="@drawable/appiconround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ViewCart"></activity>
         <activity
             android:name=".OrdersReceived"
             android:label="@string/title_activity_orders_received1"
             android:parentActivityName=".AfterLoginSeller"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditSellerProfile"
             android:label="Edit Profile Details"
-            android:parentActivityName=".ViewSellerProfile"></activity>
+            android:parentActivityName=".ViewSellerProfile" />
         <activity
             android:name=".ViewSellerProfile"
             android:label="My Profile"
@@ -26,7 +27,6 @@
         <activity
             android:name=".Developers"
             android:label="Developers Info" />
-
         <activity
             android:name=".About"
             android:label="About" />
