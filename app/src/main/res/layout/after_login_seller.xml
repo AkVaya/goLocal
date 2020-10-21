@@ -29,35 +29,29 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/editTextCategoryName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/editTextCategoryName"
         app:layout_constraintTop_toTopOf="@+id/editTextCategoryName"
         app:srcCompat="@drawable/add_circle_24px_1__1_" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="456dp"
-        android:layout_height="296dp"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/frame" />
-
 
     <TextView
         android:id="@+id/textViewHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:backgroundTint="#D9C4C4C4"
         android:fontFamily="@font/quicksand"
+        android:gravity="center_vertical"
         android:text="Select Category to add/remove Products"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCategoryName" />
 
@@ -95,6 +89,35 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp" />
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:baselineAlignBottom="true"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_support_agent_24" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Categories of Products"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarForLogout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

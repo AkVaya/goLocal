@@ -5,83 +5,73 @@
     android:layout_margin="10dp"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTintMode="src_over"
-        android:padding="5dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/rounded_2"
+        android:backgroundTint="#D9C4C4C4">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textViewNameCart"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button_transparent"
-            android:backgroundTint="#D9C4C4C4">
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
-            <TextView
-                android:id="@+id/textViewNameCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="15dp"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
+        <TextView
+            android:id="@+id/textViewUnavailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNameCart"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:text="Entered Quantity Not Available"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#FF0000"
+            android:visibility="invisible"></TextView>
 
-            <TextView
-                android:id="@+id/textViewUnavailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="15dp"
-                android:text="Entered Quantity Not Available"
-                android:layout_below="@id/textViewNameCart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#FF0000"
-                android:visibility="invisible"
-                >
-            </TextView>
+        <TextView
+            android:id="@+id/textViewQuantityCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="15dp"
+            android:text="Quantity"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
-            <TextView
-                android:id="@+id/textViewQuantityCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="15dp"
-                android:text="Quantity"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
+        <TextView
+            android:id="@+id/textViewPriceCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNameCart"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:text="Price"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewPriceCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewNameCart"
-                android:layout_alignParentRight="true"
-                android:text="Price"
-                android:layout_marginEnd="15dp"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNameCart"
+            android:layout_alignTop="@+id/textViewPrice"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toLeftOf="@+id/textViewPriceCart"
+            android:text="Rs."
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView69"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewNameCart"
-                android:layout_alignTop="@+id/textViewPrice"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:text="Rs."
-                android:layout_toLeftOf="@+id/textViewPriceCart"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
 </RelativeLayout>

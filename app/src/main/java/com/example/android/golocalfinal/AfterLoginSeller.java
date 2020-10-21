@@ -24,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +49,7 @@ public class AfterLoginSeller extends AppCompatActivity {
     ImageView buttonAdd;
     Intent intent;
     AlertDialog alertDialog;
+    FloatingActionButton support;
 
     static final public String CATEGORY_NAME = "CATEGORY_NAME", EMAIL_ID="EMAIL_ID",POSITION="POSITION";
 
@@ -82,6 +84,18 @@ public class AfterLoginSeller extends AppCompatActivity {
                     editTextCategory.setError("Name of category can't be empty");
                     editTextCategory.requestFocus();
                 }
+            }
+        });
+
+        support= findViewById(R.id.floatingActionButton);
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"golocalsupport@googlegroups.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT,"REPORT A BUG/ NEED HELP");
+                startActivity(Intent.createChooser(intent, "CONTACT US"));
             }
         });
     }

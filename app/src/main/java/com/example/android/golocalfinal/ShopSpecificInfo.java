@@ -2,6 +2,7 @@ package com.example.android.golocalfinal;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +39,8 @@ import java.util.Set;
 import static com.example.android.golocalfinal.AfterLoginBuyer.EMAIL_ID;
 
 public class ShopSpecificInfo extends AppCompatActivity {
+    ImageView callShop;
+    TextView shopName;
     RecyclerView recyclerView;
     Spinner spinnerCategories;
     Button viewCart;
@@ -53,6 +58,8 @@ public class ShopSpecificInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_specific_info);
 
+        callShop = (ImageView) findViewById(R.id.callShop);
+        shopName = (TextView) findViewById(R.id.textViewShop);
         viewCart = findViewById(R.id.buttonViewCart);
         recyclerView = findViewById(R.id.recyclerViewDisplayProducts);
         recyclerView.setHasFixedSize(true);
@@ -63,6 +70,29 @@ public class ShopSpecificInfo extends AppCompatActivity {
         categoryCorrespondence = new HashMap<>();
         String Email = intent.getExtras().getString(EMAIL_ID);
         Email = Email.replace('.',',');
+
+        FirebaseDatabase.getInstance().getReference().child("SELLERS").child(Email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String Name = snapshot.child("outletName").getValue().toString();
+                shopName.setText(Name);
+                final String PhoneNumber = snapshot.child("outletNumber").getValue().toString();
+                callShop.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String uri = "tel:" + PhoneNumber.trim() ;
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse(uri));
+                        startActivity(intent);
+                    }
+                });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
         mRef = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(Email).child("CATEGORIES");
         mRefSellerProducts = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(Email).child("CATEGORIES");
         mRefCart = FirebaseDatabase.getInstance().getReference().child("BUYERS").child((FirebaseAuth.getInstance().getCurrentUser().getEmail().replace('.',','))).child("CART").child(Email);
