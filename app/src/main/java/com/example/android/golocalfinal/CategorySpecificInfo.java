@@ -128,6 +128,7 @@ public class CategorySpecificInfo extends AppCompatActivity {
                     editTextPrice.setText(null);
                     editTextProductName.setText(null);
                     editTextQuantity.setText(null);
+                    uriProductImage = null;
                     productPhoto.setImageResource(R.drawable.camera_1);
                 }
             }
