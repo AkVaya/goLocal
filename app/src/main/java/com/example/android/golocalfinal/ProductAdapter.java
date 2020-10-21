@@ -4,7 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +45,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewQuantity.setText((curr.getQuantity()));
         holder.textViewPrice.setText(curr.getPrice());
         holder.textViewDescription.setText(curr.getDesc());
+        Glide.with(holder.productImage.getContext())
+                .load(curr.getImageURL())
+                .into(holder.productImage);
+
     }
 
     @Override
@@ -50,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
         TextView textViewProduct,textViewQuantity,textViewPrice,textViewDescription;
+        ImageView productImage;
         ProductAdapter.clickHandler clickHandler;
         public ProductViewHolder(@NonNull View itemView,clickHandler clickHandler) {
             super(itemView);
@@ -57,6 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             textViewQuantity = (TextView) itemView.findViewById(R.id.textViewQuantity);
             textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
             textViewDescription = (TextView) itemView.findViewById(R.id.textViewDescription);
+            productImage = (ImageView) itemView.findViewById(R.id.productImage);
             this.clickHandler = clickHandler;
             itemView.setOnLongClickListener(this);
         }
