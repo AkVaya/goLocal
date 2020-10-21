@@ -48,8 +48,20 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/spinner_categories"
+        android:layout_above="@+id/buttonViewCart"
         >
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/buttonViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="View Cart"
+        android:background="@drawable/rounded_button_transparent"
+        >
+
+    </Button>
 
 
 </RelativeLayout>
