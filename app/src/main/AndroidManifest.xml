@@ -10,7 +10,10 @@
         android:roundIcon="@drawable/appiconround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewCart"></activity>
+        <activity android:name=".ViewBuyerProfile"></activity>
+        <activity android:name=".BuyerOrders" />
+        <activity android:name=".Favourites" />
+        <activity android:name=".ViewCart" />
         <activity
             android:name=".OrdersReceived"
             android:label="@string/title_activity_orders_received1"
@@ -18,11 +21,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditSellerProfile"
-            android:label="Edit Profile Details"
+            android:label=""
             android:parentActivityName=".ViewSellerProfile" />
         <activity
             android:name=".ViewSellerProfile"
-            android:label="My Profile"
+            android:label=""
             android:parentActivityName=".AfterLoginSeller" />
         <activity
             android:name=".Developers"
@@ -45,13 +48,15 @@
             android:label="Sign Up" />
         <activity
             android:name=".AfterLoginSeller"
-            android:label="Categories of Products" />
-        <activity android:name=".AfterLoginBuyer" />
+            android:label="" />
+        <activity
+            android:name=".AfterLoginBuyer"
+            android:label="" />
         <activity android:name=".SellerBasicInfo" />
         <activity android:name=".BuyerBasicInfo" />
         <activity
             android:name=".CategorySpecificInfo"
-            android:label="Add/View Products"
+            android:label=""
             android:parentActivityName=".AfterLoginSeller" />
         <activity
             android:name=".ShopSpecificInfo"

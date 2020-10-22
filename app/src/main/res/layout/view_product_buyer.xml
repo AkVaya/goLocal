@@ -8,6 +8,70 @@
     android:orientation="vertical"
     tools:overrideLibrary="com.google.firebase.auth">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/rounded_2"
+        android:backgroundTint="#d9c4c4c4">
+
+        <Button
+            android:id="@+id/buttonAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="#ffffff"
+            android:text="Add to cart"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/productImageBuyer"
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:src="@drawable/camera_1" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionBuyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductBuyer"
+            android:layout_toRightOf="@id/productImageBuyer"
+            android:text="Description"></TextView>
+
+
+        <TextView
+            android:id="@+id/textViewRs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDescriptionBuyer"
+            android:layout_toRightOf="@id/productImageBuyer"
+            android:text="Rs"
+            android:textColor="#569A1C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewPriceBuyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDescriptionBuyer"
+            android:layout_toRightOf="@id/textViewRs"
+            android:paddingLeft="5dp"
+            android:text="Price"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewProductBuyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/productImageBuyer"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
+    </RelativeLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -16,66 +80,5 @@
         android:padding="5dp"
         app:cardBackgroundColor="#B0C4C4C4">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/productImageBuyer"
-                android:layout_width="120dp"
-                android:layout_height="90dp"
-                android:src="@drawable/camera_1" />
-
-            <TextView
-                android:id="@+id/textViewProductBuyer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@id/productImageBuyer"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
-
-            <TextView
-                android:id="@+id/textViewDescriptionBuyer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewProductBuyer"
-                android:layout_toRightOf="@id/productImageBuyer"
-                android:text="Description">
-            </TextView>
-
-
-            <TextView
-                android:id="@+id/textViewRs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewDescriptionBuyer"
-                android:layout_toRightOf="@id/productImageBuyer"
-                android:text="Rs"
-                android:textColor="#569A1C"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewPriceBuyer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewDescriptionBuyer"
-                android:layout_toRightOf="@id/textViewRs"
-                android:text="Price"
-                android:textStyle="bold"
-                android:paddingLeft="5dp"
-                />
-
-            <Button
-                android:id="@+id/buttonAddToCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add to cart"
-                android:layout_centerInParent="true"
-                android:layout_alignParentEnd="true"
-                android:textStyle="bold"
-                />
-        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

@@ -9,31 +9,47 @@
     android:orientation="vertical"
     tools:overrideLibrary="com.google.firebase.auth">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/buttonPlaceOrder"
+        android:layout_below="@id/toolbarForLogout"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+    </ScrollView>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarForLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#6B6AA9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="my cart"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbarForLogout"
-        android:layout_above="@id/buttonPlaceOrder"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/buttonPlaceOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button_transparent"
-        android:text="PLACE ORDER"
         android:layout_alignParentBottom="true"
-        >
-    </Button>
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:backgroundTint="@color/colorAccent"
+        android:text="PLACE ORDER"></Button>
 
 
 </RelativeLayout>

@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,22 +29,25 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AfterLoginBuyer extends AppCompatActivity {
+public class AfterLoginBuyer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseAuth mAuth;
     DatabaseReference mRefShops,mRef;
     Toolbar toolbar ;
     RecyclerView recyclerView;
     List<shop> shopList;
     String email,city="";
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    FloatingActionButton support;
     static final public String EMAIL_ID = "EMAIL_ID";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.after_login_buyer);
+
+        support = findViewById(R.id.floatingActionButton);
         mAuth = FirebaseAuth.getInstance();
-        toolbar = findViewById(R.id.toolbarForLogout);
-        setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.recyclerViewShop);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -47,26 +56,32 @@ public class AfterLoginBuyer extends AppCompatActivity {
         email = mAuth.getCurrentUser().getEmail();
         email = email.replace('.',',');
         mRef = FirebaseDatabase.getInstance().getReference().child("BUYERS").child(email).child("userCity");
+
+        //NavigationDrawer
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbarForLogout);
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"golocalsupport@googlegroups.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT,"REPORT A BUG/ NEED HELP");
+                startActivity(Intent.createChooser(intent, "CONTACT US"));
+            }
+        });
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menuLogout :
-                mAuth.signOut();
-                finish();
-                startActivity(new Intent(AfterLoginBuyer.this,MainActivity.class));
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu,menu);
-        return true;
-    }
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() == null){
@@ -135,5 +150,62 @@ public class AfterLoginBuyer extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.nav_home :
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.nav_fav :
+                startActivity(new Intent(AfterLoginBuyer.this, Favourites.class));
+                break;
+            case R.id.nav_orders :
+                startActivity(new Intent(AfterLoginBuyer.this, BuyerOrders.class));
+                break;
+
+
+            case R.id.nav_profile :
+                startActivity(new Intent(AfterLoginBuyer.this, ViewBuyerProfile.class));
+                break;
+
+            case R.id.nav_logout :
+                mAuth.signOut();
+                finish();
+                startActivity(new Intent(AfterLoginBuyer.this,MainActivity.class));
+                break;
+    /*
+            case R.id.nav_share :
+                startActivity(new Intent(AfterLoginBuyer.this, Developers.class));
+                break;
+            case R.id.nav_rate :
+                startActivity(new Intent(AfterLoginSeller.this, OrdersReceived.class));
+                break;
+      */
+
+            case R.id.nav_developers :
+                startActivity(new Intent(AfterLoginBuyer.this, Developers.class));
+                break;
+
+            case R.id.nav_about :
+                startActivity(new Intent(AfterLoginBuyer.this, About.class));
+                break;
+
+        }
+        return true;
     }
 }

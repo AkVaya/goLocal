@@ -8,6 +8,32 @@
     android:background="#ffffff"
     tools:overrideLibrary="com.google.firebase.auth">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarForLogout"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:background="#6B6AA9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Add/ Remove Products"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarForLogout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonAddNewProduct"
@@ -49,6 +75,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/addProductImage"
         app:layout_constraintTop_toBottomOf="@+id/editTextQuantityAvailable" />
+
 
     <EditText
         android:id="@+id/editTextProductName"
@@ -115,18 +142,6 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonAddNewProduct"
         tools:ignore="RtlCompat" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarForLogout"
-        android:layout_width="0dp"
-
-        android:layout_height="wrap_content"
-        android:background="#6B6AA9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.appcompat.widget.Toolbar>
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -161,10 +176,10 @@
 
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="78dp"
+        android:layout_width="110dp"
         android:layout_height="36dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Click on camera to select image"
+        android:text="Click on camera to select image and wait for the image to upload."
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/addProductImage"
         app:layout_constraintEnd_toEndOf="@+id/addProductImage"

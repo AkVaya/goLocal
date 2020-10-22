@@ -27,19 +27,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="Shop Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                >
-            </TextView>
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
             <TextView
                 android:id="@+id/textViewShopLocality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Locality"
                 android:layout_below="@id/textViewShopName"
-                >
-            </TextView>
+                android:paddingStart="6dp"
+                android:paddingBottom="8dp"
+                android:text="Locality"></TextView>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

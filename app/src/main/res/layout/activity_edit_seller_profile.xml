@@ -206,17 +206,18 @@
       app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
   <TextView
-      android:id="@+id/textView17"
+      android:id="@+id/textView28"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="18dp"
-      android:text="Edit Profile Info"
-      android:textColor="#000000"
-      android:textSize="20sp"
+      android:layout_marginStart="16dp"
+      android:fontFamily="@font/montserrat"
+      android:text="Edit Profile Details"
+      android:textAllCaps="true"
+      android:textColor="#FFFFFF"
+      android:textSize="18sp"
+      android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="@+id/toolbar5"
-      app:layout_constraintEnd_toEndOf="@+id/toolbar5"
-      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="@+id/toolbar5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
