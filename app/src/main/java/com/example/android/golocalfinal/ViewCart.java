@@ -42,7 +42,7 @@ public class ViewCart extends AppCompatActivity {
     HashMap<String,Boolean> store;
     Integer index;
     FirebaseUser mUser ;
-    String Name,PhoneNumber;
+    String Name,PhoneNumber,Address,shopName,shopContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class ViewCart extends AppCompatActivity {
         temp = new ArrayList<>();
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
         email = getIntent().getExtras().getString(ShopSpecificInfo.EMAIL_ID);
-        String mail = email;
         mRef = FirebaseDatabase.getInstance().getReference().child("BUYERS").child((FirebaseAuth.getInstance().getCurrentUser().getEmail().replace('.',',')));
         mRefSellerProducts = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(email).child("CATEGORIES");
         mRefSeller = FirebaseDatabase.getInstance().getReference().child("SELLERS").child(email);
@@ -94,7 +93,11 @@ public class ViewCart extends AppCompatActivity {
             mRefSeller.child("pendingOrders").child(key).child("list").setValue(shoppingCart);
             mRefSeller.child("pendingOrders").child(key).child("name").setValue(Name);
             mRefSeller.child("pendingOrders").child(key).child("number").setValue(PhoneNumber);
-            mRef.child("yourOrders").child(key).setValue(shoppingCart);
+            mRefSeller.child("pendingOrders").child(key).child("address").setValue(Address);
+            mRef.child("yourOrders").child(key).child("list").setValue(shoppingCart);
+            mRef.child("yourOrders").child(key).child("name").setValue(shopName);
+            mRef.child("yourOrders").child(key).child("contact").setValue(shopContact);
+
             shoppingCart.clear();
             mRef.child("CART").child(email).setValue(shoppingCart);
             Toast.makeText(getApplicationContext(),"Order Place",Toast.LENGTH_SHORT).show();
@@ -157,6 +160,20 @@ public class ViewCart extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Name = snapshot.child("userName").getValue().toString();
                 PhoneNumber = snapshot.child("userNumber").getValue().toString();
+                Address = snapshot.child("userAddress").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        mRefSeller.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                shopName = snapshot.child("outletName").getValue().toString();
+                shopContact = snapshot.child("outletNumber").getValue().toString();
             }
 
             @Override
