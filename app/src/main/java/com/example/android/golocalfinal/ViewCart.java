@@ -43,6 +43,8 @@ public class ViewCart extends AppCompatActivity {
     Integer index;
     FirebaseUser mUser ;
     String Name,PhoneNumber,Address,shopName,shopContact;
+    Integer totalCost;
+    TextView textViewTotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class ViewCart extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         shoppingCart = new ArrayList<>();
         temp = new ArrayList<>();
+        textViewTotalPrice = findViewById(R.id.textViewTotalPrice);
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
         email = getIntent().getExtras().getString(ShopSpecificInfo.EMAIL_ID);
         mRef = FirebaseDatabase.getInstance().getReference().child("BUYERS").child((FirebaseAuth.getInstance().getCurrentUser().getEmail().replace('.',',')));
@@ -62,7 +65,7 @@ public class ViewCart extends AppCompatActivity {
         index = 0;
         store = new HashMap<>();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-
+        totalCost = 0;
         buttonPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,13 +93,17 @@ public class ViewCart extends AppCompatActivity {
         }
         else{
             String key = mRefSeller.push().getKey();
-            mRefSeller.child("pendingOrders").child(key).child("list").setValue(shoppingCart);
-            mRefSeller.child("pendingOrders").child(key).child("name").setValue(Name);
-            mRefSeller.child("pendingOrders").child(key).child("number").setValue(PhoneNumber);
-            mRefSeller.child("pendingOrders").child(key).child("address").setValue(Address);
+            mRefSeller.child("pendingOrders").child(key).child("buyerList").setValue(shoppingCart);
+            mRefSeller.child("pendingOrders").child(key).child("buyerName").setValue(Name);
+            mRefSeller.child("pendingOrders").child(key).child("buyerNumber").setValue(PhoneNumber);
+            mRefSeller.child("pendingOrders").child(key).child("buyerAddress").setValue(Address);
+            mRefSeller.child("pendingOrders").child(key).child("buyerEmail").setValue(mUser.getEmail().replace('.',','));
+            mRefSeller.child("pendingOrders").child(key).child("totalCost").setValue(totalCost);
+
             mRef.child("yourOrders").child(key).child("list").setValue(shoppingCart);
             mRef.child("yourOrders").child(key).child("name").setValue(shopName);
             mRef.child("yourOrders").child(key).child("contact").setValue(shopContact);
+            mRef.child("yourOrders").child(key).child("cost").setValue(totalCost);
 
             shoppingCart.clear();
             mRef.child("CART").child(email).setValue(shoppingCart);
@@ -114,6 +121,7 @@ public class ViewCart extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 temp.clear();
                 shoppingCart.clear();
+                totalCost = 0;
                 for (DataSnapshot single : snapshot.getChildren()) {
                     final String categoryIndex, index, name, price, quantity;
                     categoryIndex = single.child("itemCategoryIndex").getValue().toString();
@@ -133,6 +141,7 @@ public class ViewCart extends AppCompatActivity {
                             name = x.getItemName();
                             quantity = x.getItemQuantity();
                             price = x.getItemPrice();
+                            totalCost += Integer.parseInt(price)*Integer.parseInt(quantity);
                             String available = snapshot.child(categoryIndex).child("PRODUCTS").child(index).child("quantity").getValue().toString();
                             if (Integer.parseInt(available) < Integer.parseInt(quantity)) {
                                 shoppingCart.add(new ProductCart(categoryIndex, index, name, price, quantity, true));
@@ -142,8 +151,9 @@ public class ViewCart extends AppCompatActivity {
                         }
                         CartAdapter adapter = new CartAdapter(getApplicationContext(), shoppingCart);
                         recyclerView.setAdapter(adapter);
-                    }
+                        textViewTotalPrice.setText("The total cost is " + totalCost.toString());
 
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

@@ -52,6 +52,7 @@ public class BuyerBasicInfo extends AppCompatActivity {
 
     public void saveInfo(final String Email, String Password){
         progressBar.setVisibility(View.VISIBLE);
+        
         mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -67,7 +68,6 @@ public class BuyerBasicInfo extends AppCompatActivity {
                     mRef.child("BUYERS").child(email2).setValue(buyerInformation);
                     Intent intent = new Intent(BuyerBasicInfo.this, AfterLoginBuyer.class);
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    //Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();
                     startActivity(intent);
 
                 } else {
