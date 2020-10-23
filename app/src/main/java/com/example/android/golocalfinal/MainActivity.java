@@ -117,8 +117,9 @@ public class MainActivity extends AppCompatActivity{
                 progressBar.setVisibility(View.GONE);
                 if(val.equals("BUYER")){
                     Intent intent = new Intent(MainActivity.this, AfterLoginBuyer.class);
-                    startActivity(intent);
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    finish();
+                    startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(), AfterLoginSeller.class);

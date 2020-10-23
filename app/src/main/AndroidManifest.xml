@@ -10,7 +10,10 @@
         android:roundIcon="@drawable/appiconround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+gi
         <activity android:name=".EditBuyerProfile"></activity>
+        <activity android:name=".ViewMySpecificOrder"></activity>
+
         <activity android:name=".ViewBuyerProfile" />
         <activity android:name=".BuyerOrders" />
         <activity android:name=".Favourites" />

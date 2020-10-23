@@ -12,14 +12,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/textViewTotalPrice"
+        android:layout_above="@id/textViewTotalPriceCart"
         android:layout_below="@id/toolbarForLogout"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCart"
+            android:id="@+id/recyclerViewSpecificOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
@@ -35,31 +35,31 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/montserrat"
-            android:text="my cart"
+            android:text="My Orders"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
     <TextView
-        android:id="@+id/textViewTotalPrice"
+        android:id="@+id/textViewTotalPriceCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total"
         android:textSize="20dp"
         android:textAlignment="center"
-        android:layout_above="@id/buttonPlaceOrder"
+        android:layout_above="@id/buttonConfirmOrderDelivery"
         >
     </TextView>
     <Button
-        android:id="@+id/buttonPlaceOrder"
+        android:id="@+id/buttonConfirmOrderDelivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_button_transparent"
         android:backgroundTint="@color/colorAccent"
-        android:text="PLACE ORDER">
+        android:text="Confirm Order Delivery">
     </Button>
 
 </RelativeLayout>

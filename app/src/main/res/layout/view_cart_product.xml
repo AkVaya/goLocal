@@ -22,7 +22,8 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large">
+        </TextView>
 
         <TextView
             android:id="@+id/textViewUnavailable"
@@ -34,7 +35,20 @@
             android:text="Entered Quantity Not Available"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#FF0000"
-            android:visibility="invisible"></TextView>
+            android:visibility="invisible">
+        </TextView>
+        <TextView
+            android:id="@+id/textViewDelivered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewNameCart"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:text="Order Delivered"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorAccent"
+            android:visibility="invisible">
+        </TextView>
 
         <TextView
             android:id="@+id/textViewQuantityCart"
@@ -44,7 +58,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="15dp"
             android:text="Quantity"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large">
+        </TextView>
 
         <TextView
             android:id="@+id/textViewPriceCart"
@@ -72,6 +87,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorAccent"
             android:textStyle="bold" />
+
+
     </RelativeLayout>
 
 </RelativeLayout>
