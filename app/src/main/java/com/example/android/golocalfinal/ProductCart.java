@@ -37,9 +37,6 @@ public class ProductCart {
         this.itemQuantity = itemQuantity;
     }
 
-    public ProductCart() {
-    }
-
     public Boolean getCheck() {
         return check;
     }
