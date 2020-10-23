@@ -23,16 +23,16 @@
 
     </EditText>
 
-    <ImageView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonAddNewCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="@+id/editTextCategoryName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/editTextCategoryName"
-        app:layout_constraintTop_toTopOf="@+id/editTextCategoryName"
-        app:srcCompat="@drawable/add_circle_24px_1__1_" />
+        app:layout_constraintTop_toTopOf="@+id/editTextCategoryName" />
 
 
     <TextView

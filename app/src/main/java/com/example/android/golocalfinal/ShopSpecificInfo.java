@@ -134,7 +134,6 @@ public class ShopSpecificInfo extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         mRefCart.addValueEventListener(new ValueEventListener() {
@@ -175,9 +174,10 @@ public class ShopSpecificInfo extends AppCompatActivity {
                             String index = dataSnapshot.getKey();
                             String name = dataSnapshot.child("name").getValue().toString(),
                                     price = dataSnapshot.child("price").getValue().toString(),
-                                    description = dataSnapshot.child("desc").getValue().toString();
+                                    description = dataSnapshot.child("desc").getValue().toString(),
+                                    image = dataSnapshot.child("imageURL").getValue().toString();
 
-                            productList.add(new ProductBuyer(name,price,description));
+                            productList.add(new ProductBuyer(name,price,description,image));
                             productCorrespondence.put(name,index);
                         }
                         ViewProductAdapter adapter = new ViewProductAdapter(getApplicationContext(), productList, new ViewProductAdapter.onNoteListener() {

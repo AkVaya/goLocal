@@ -4,11 +4,13 @@ public class ProductBuyer {
 
     String Name;
     String Price,Desc;
+    String ImageURL;
 
-    public ProductBuyer(String name, String price, String desc) {
+    public ProductBuyer(String name, String price, String desc, String image) {
         Name = name;
         Price = price;
         Desc = desc;
+        ImageURL = image;
     }
 
     public void setName(String name) {
@@ -21,6 +23,14 @@ public class ProductBuyer {
 
     public void setDesc(String desc) {
         Desc = desc;
+    }
+
+    public void setImageURL(String imageURL) {
+        ImageURL = imageURL;
+    }
+
+    public String getImageURL() {
+        return ImageURL;
     }
 
     public String getName() {

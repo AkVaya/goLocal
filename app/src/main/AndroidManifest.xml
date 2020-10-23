@@ -10,7 +10,8 @@
         android:roundIcon="@drawable/appiconround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewBuyerProfile"></activity>
+        <activity android:name=".EditBuyerProfile"></activity>
+        <activity android:name=".ViewBuyerProfile" />
         <activity android:name=".BuyerOrders" />
         <activity android:name=".Favourites" />
         <activity android:name=".ViewCart" />

@@ -3,12 +3,16 @@ package com.example.android.golocalfinal;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -44,6 +48,9 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         holder.textViewProduct.setText(curr.getName());
         holder.textViewPrice.setText(curr.getPrice());
         holder.textViewDescription.setText(curr.getDesc());
+        Glide.with(holder.prodImage.getContext())
+                .load(curr.getImageURL())
+                .into(holder.prodImage);
     }
 
     @Override
@@ -53,10 +60,12 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
 
     static class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textViewProduct,textViewPrice,textViewDescription;
+        ImageView prodImage;
         Button buttonAddToCart;
         ViewProductAdapter.onNoteListener onNoteListener;
         public ProductViewHolder(@NonNull View itemView,ViewProductAdapter.onNoteListener onNoteListener) {
             super(itemView);
+            prodImage = itemView.findViewById(R.id.productImageBuyer);
             textViewProduct = (TextView) itemView.findViewById(R.id.textViewProductBuyer);
             textViewPrice = (TextView) itemView.findViewById(R.id.textViewPriceBuyer);
             textViewDescription =  itemView.findViewById(R.id.textViewDescriptionBuyer);
