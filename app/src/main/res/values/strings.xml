@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">goLocalFinal</string>
     <string name="title_activity_orders_received1">OrdersReceived1</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Pending Orders</string>
+    <string name="tab_text_2">Delivered Orders</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
