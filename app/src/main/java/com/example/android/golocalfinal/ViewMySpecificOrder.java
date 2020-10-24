@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class ViewMySpecificOrder extends AppCompatActivity {
     Integer totalCost;
     String email,orderId,status,contactNumber;
     FirebaseUser mUser;
+    ImageView call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,16 @@ public class ViewMySpecificOrder extends AppCompatActivity {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference().child("BUYERS").child(mUser.getEmail().replace('.',',')).child("yourOrders").child(orderId);
         mRefSeller = FirebaseDatabase.getInstance().getReference().child("SELLERS");
+        call = findViewById(R.id.callShopSeller);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                        String uri = "tel:" + contactNumber.trim() ;
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse(uri));
+                        startActivity(intent);
+            }
+        });
 
         buttonConfirmOrderDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
