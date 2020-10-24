@@ -25,8 +25,8 @@ public class BuyerOrders extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseUser mUser;
     List<ProductBuyer> orderList,deliveredList;
-    final static String ORDER_ID = "ORDER_ID";
-    HashMap<Integer,String> orderIds;
+    final static String ORDER_ID = "ORDER_ID", SHOP_NUMBER = "SHOP_NUMBER";
+    HashMap<Integer,String> orderIds, numbersId;
 
 
     @Override
@@ -41,6 +41,7 @@ public class BuyerOrders extends AppCompatActivity {
         orderList = new ArrayList<>();
         deliveredList = new ArrayList<>();
         orderIds = new HashMap<>();
+        numbersId = new HashMap<>();
     }
 
     @Override
@@ -58,6 +59,7 @@ public class BuyerOrders extends AppCompatActivity {
                     String totalCost = order.child("cost").getValue().toString();
                     String status = order.child("status").getValue().toString();
                     String id = order.child("key").getValue().toString();
+                    String number = order.child("contact").getValue().toString();
                     if(status.equals("incomplete")) {
                         orderList.add(new ProductBuyer(shopName, totalCost, status));
                     }
@@ -65,6 +67,7 @@ public class BuyerOrders extends AppCompatActivity {
                         deliveredList.add(new ProductBuyer(shopName, totalCost, status));
                     }
                     orderIds.put(i,id);
+                    numbersId.put(i,number);
                     i++;
                 }
                 orderList.addAll(deliveredList);
@@ -73,6 +76,7 @@ public class BuyerOrders extends AppCompatActivity {
                     public void onNoteClick(int position) {
                         Intent intent = new Intent(getApplicationContext(),ViewMySpecificOrder.class);
                         intent.putExtra(ORDER_ID,orderIds.get(position));
+                        intent.putExtra(SHOP_NUMBER,numbersId.get(position));
                         startActivity(intent);
                     }
                 }));

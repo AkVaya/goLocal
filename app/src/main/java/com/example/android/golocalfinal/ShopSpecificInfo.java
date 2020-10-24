@@ -58,8 +58,8 @@ public class ShopSpecificInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_specific_info);
 
-        callShop = (ImageView) findViewById(R.id.callShop);
-        shopName = (TextView) findViewById(R.id.textViewShop);
+        callShop =  findViewById(R.id.callShop);
+        shopName =  findViewById(R.id.textViewShop);
         viewCart = findViewById(R.id.buttonViewCart);
         recyclerView = findViewById(R.id.recyclerViewDisplayProducts);
         recyclerView.setHasFixedSize(true);

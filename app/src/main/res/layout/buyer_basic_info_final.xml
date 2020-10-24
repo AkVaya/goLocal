@@ -58,20 +58,19 @@
         app:layout_constraintStart_toStartOf="@+id/userName"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-    <EditText
-        android:id="@+id/userCity"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+    <Spinner
+        android:id="@+id/spinnerUserCity"
         android:ems="10"
-        android:hint="City"
         android:inputType="textPersonName"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:textColorHint="#FFFFFF"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/userAddress"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@+id/userAddress"
-        app:layout_constraintTop_toBottomOf="@+id/userAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/userAddress"
+        />
 
     <EditText
         android:id="@+id/userNumber"
@@ -83,10 +82,10 @@
         android:inputType="number"
         android:textColorHint="#FBFBFB"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/userCity"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerUserCity"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/userCity"
-        app:layout_constraintTop_toBottomOf="@+id/userCity" />
+        app:layout_constraintStart_toStartOf="@+id/spinnerUserCity"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerUserCity" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -128,10 +127,10 @@
         android:id="@+id/imageView27"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/userCity"
-        app:layout_constraintEnd_toStartOf="@+id/userCity"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerUserCity"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerUserCity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/userCity"
+        app:layout_constraintTop_toTopOf="@+id/spinnerUserCity"
         app:srcCompat="@drawable/map_1" />
 
     <ImageView
