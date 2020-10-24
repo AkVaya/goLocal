@@ -200,6 +200,9 @@ public class AfterLoginBuyer extends AppCompatActivity implements NavigationView
                 startActivity(new Intent(AfterLoginSeller.this, OrdersReceived.class));
                 break;
       */
+            case R.id.nav_password :
+                startActivity(new Intent(AfterLoginBuyer.this, ForgotPassword.class));
+                break;
 
             case R.id.nav_developers :
                 startActivity(new Intent(AfterLoginBuyer.this, Developers.class));

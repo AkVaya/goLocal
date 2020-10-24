@@ -160,7 +160,10 @@ public class AfterLoginSeller extends AppCompatActivity {
                 break;
             case R.id.viewProfile :
                 startActivity(new Intent(AfterLoginSeller.this, ViewSellerProfile.class));
-
+                break;
+            case R.id.forgotpasswordSeller :
+                startActivity(new Intent(AfterLoginSeller.this, ForgotPassword.class));
+                break;
         }
         return true;
     }

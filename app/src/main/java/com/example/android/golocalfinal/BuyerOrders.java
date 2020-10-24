@@ -58,13 +58,15 @@ public class BuyerOrders extends AppCompatActivity {
                     String shopName = order.child("name").getValue().toString();
                     String totalCost = order.child("cost").getValue().toString();
                     String status = order.child("status").getValue().toString();
+                    String image= "";
+
                     String id = order.child("key").getValue().toString();
                     String number = order.child("contact").getValue().toString();
                     if(status.equals("incomplete")) {
-                        orderList.add(new ProductBuyer(shopName, totalCost, status));
+                        orderList.add(new ProductBuyer(shopName, totalCost, status,image));
                     }
                     else{
-                        deliveredList.add(new ProductBuyer(shopName, totalCost, status));
+                        deliveredList.add(new ProductBuyer(shopName, totalCost, status,image));
                     }
                     orderIds.put(i,id);
                     numbersId.put(i,number);
