@@ -88,11 +88,9 @@ public class EditSellerProfile extends AppCompatActivity {
                 mRef.child("outletNumber").setValue(number);
                 mRef.child("outletContactName").setValue(owner);
                 Toast.makeText(getApplicationContext(),"Details updated successfully!",Toast.LENGTH_SHORT).show();
-
+                finish();
             }
         });
-
-
 
     }
 

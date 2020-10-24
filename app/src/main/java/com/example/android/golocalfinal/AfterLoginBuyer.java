@@ -158,6 +158,10 @@ public class AfterLoginBuyer extends AppCompatActivity implements NavigationView
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         else {
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
             super.onBackPressed();
 
         }
@@ -196,6 +200,9 @@ public class AfterLoginBuyer extends AppCompatActivity implements NavigationView
                 startActivity(new Intent(AfterLoginSeller.this, OrdersReceived.class));
                 break;
       */
+            case R.id.nav_password :
+                startActivity(new Intent(AfterLoginBuyer.this, ForgotPassword.class));
+                break;
 
             case R.id.nav_developers :
                 startActivity(new Intent(AfterLoginBuyer.this, Developers.class));

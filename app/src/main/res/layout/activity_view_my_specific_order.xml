@@ -61,5 +61,15 @@
         android:backgroundTint="@color/colorAccent"
         android:text="Confirm Order Delivery">
     </Button>
-
+    <ImageView
+        android:id="@+id/callShopSeller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewSelectCategory"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/call_icon" />
 </RelativeLayout>

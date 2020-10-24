@@ -160,7 +160,10 @@ public class AfterLoginSeller extends AppCompatActivity {
                 break;
             case R.id.viewProfile :
                 startActivity(new Intent(AfterLoginSeller.this, ViewSellerProfile.class));
-
+                break;
+            case R.id.forgotpasswordSeller :
+                startActivity(new Intent(AfterLoginSeller.this, ForgotPassword.class));
+                break;
         }
         return true;
     }
@@ -250,4 +253,12 @@ public class AfterLoginSeller extends AppCompatActivity {
         return myQuittingDialogBox;
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+        super.onBackPressed();
+    }
 }
