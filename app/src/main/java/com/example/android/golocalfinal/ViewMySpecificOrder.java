@@ -34,7 +34,7 @@ public class ViewMySpecificOrder extends AppCompatActivity {
     List<ProductCart> shoppingOrder;
     DatabaseReference mRef,mRefSeller;
     Integer totalCost;
-    String email,orderId,status;
+    String email,orderId,status,contactNumber;
     FirebaseUser mUser;
 
     @Override
@@ -48,6 +48,7 @@ public class ViewMySpecificOrder extends AppCompatActivity {
         textViewTotalPriceCart = findViewById(R.id.textViewTotalPriceCart);
         shoppingOrder = new ArrayList<>();
         orderId = getIntent().getExtras().getString(BuyerOrders.ORDER_ID);
+        contactNumber = getIntent().getExtras().getString(BuyerOrders.SHOP_NUMBER); 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference().child("BUYERS").child(mUser.getEmail().replace('.',',')).child("yourOrders").child(orderId);
         mRefSeller = FirebaseDatabase.getInstance().getReference().child("SELLERS");

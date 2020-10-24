@@ -34,14 +34,14 @@ public class SellerBasicInfo extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seller_basic_info_final);
-        outletAddress = (EditText) findViewById(R.id.outletAddress);
-        outletName = (EditText) findViewById(R.id.outletName);
-        outletCity = (EditText) findViewById(R.id.outletCity);
-        outletLocality = (EditText) findViewById(R.id.outletLocality);
-        outletContactName = (EditText) findViewById(R.id.outletContactName);
-        outletNumber = (EditText) findViewById(R.id.outletContact);
-        buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        outletAddress =  findViewById(R.id.outletAddress);
+        outletName =  findViewById(R.id.outletName);
+        outletCity =  findViewById(R.id.outletCity);
+        outletLocality =  findViewById(R.id.outletLocality);
+        outletContactName =  findViewById(R.id.outletContactName);
+        outletNumber =  findViewById(R.id.outletContact);
+        buttonConfirm =  findViewById(R.id.buttonConfirm);
+        progressBar =  findViewById(R.id.progressbar);
         mAuth = FirebaseAuth.getInstance();
         intent = getIntent();
         Email = intent.getExtras().getString(SignUpActivity.EMAIL_ID);
@@ -55,29 +55,55 @@ public class SellerBasicInfo extends AppCompatActivity {
     }
 
     public void saveInfo(final String Email, String Password){
-        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful()) {
-                    finish();
-                    mRef = FirebaseDatabase.getInstance().getReference();
-                    String email2 = Email.replace('.', ',');
-                    outletInformation = new OutletInformation(Email,outletName.getText().toString().trim(),outletAddress.getText().toString(),outletCity.getText().toString().trim(),
-                            outletLocality.getText().toString().trim(),outletContactName.getText().toString().trim(),outletNumber.getText().toString());
-                    mRef.child("TYPE").child(email2).setValue("SELLER");
-                    mRef.child("SELLERS").child(email2).setValue(outletInformation);
-                    Intent intent = new Intent(getApplicationContext(), AfterLoginSeller.class);
-                    intent.putExtra(EMAIL_ID,Email);
-                    intent.putExtra(ACTIVITY_NAME,"INFO");
-                    intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        if(outletAddress.getText().toString().isEmpty()){
+            outletAddress.setError("Address can't be empty");
+            outletAddress.requestFocus();
+        }
+        else if(outletName.getText().toString().isEmpty()){
+            outletName.setError("outlet name can't be empty");
+            outletName.requestFocus();
+        }
+        else if(outletCity.getText().toString().isEmpty()){
+            outletCity.setError("City name can't be empty");
+            outletCity.requestFocus();
+        }
+        else if(outletLocality.getText().toString().isEmpty()){
+            outletLocality.setError("Locality can't be empty");
+            outletLocality.requestFocus();
+        }
+        else if(outletContactName.getText().toString().isEmpty()){
+            outletContactName.setError("Contact Name can't be empty");
+            outletContactName.requestFocus();
+        }
+        else if(outletNumber.getText().toString().isEmpty() || outletNumber.getText().toString().length()!=10){
+            outletNumber.setError("Enter a valid number");
+            outletNumber.requestFocus();
+        }
+        else {
+            progressBar.setVisibility(View.VISIBLE);
+            mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        finish();
+                        mRef = FirebaseDatabase.getInstance().getReference();
+                        String email2 = Email.replace('.', ',');
+                        outletInformation = new OutletInformation(Email, outletName.getText().toString().trim(), outletAddress.getText().toString(), outletCity.getText().toString().trim(),
+                                outletLocality.getText().toString().trim(), outletContactName.getText().toString().trim(), outletNumber.getText().toString());
+                        mRef.child("TYPE").child(email2).setValue("SELLER");
+                        mRef.child("SELLERS").child(email2).setValue(outletInformation);
+                        Intent intent = new Intent(getApplicationContext(), AfterLoginSeller.class);
+                        intent.putExtra(EMAIL_ID, Email);
+                        intent.putExtra(ACTIVITY_NAME, "INFO");
+                        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }

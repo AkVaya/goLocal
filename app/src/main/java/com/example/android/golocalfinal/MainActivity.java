@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     FirebaseAuth mAuth;
     EditText editTextEmail, editTextPassword;
     ProgressBar progressBar;
+    TextView textViewForgotPassword;
     DatabaseReference mRef;
     Button Login,SignUp;
     FirebaseUser mUser;
@@ -36,14 +38,15 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        editTextEmail =  findViewById(R.id.editTextEmail);
+        editTextPassword =  findViewById(R.id.editTextPassword);
+        progressBar =  findViewById(R.id.progressbar);
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference();
         mUser = mAuth.getCurrentUser();
-        Login = (Button) findViewById(R.id.buttonLogin);
-        SignUp = (Button) findViewById(R.id.buttonSignUp);
+        Login =  findViewById(R.id.buttonLogin);
+        SignUp =  findViewById(R.id.buttonSignUp);
+        textViewForgotPassword = findViewById(R.id.forgotpassword);
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,10 +60,18 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ForgotPassword.class));
+
+            }
+        });
     }
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null){
+            progressBar.setVisibility(View.VISIBLE);
             Login();
         }
     }
@@ -80,7 +91,7 @@ public class MainActivity extends AppCompatActivity{
 
         }
         if(Password.isEmpty()){
-            editTextPassword.setError("Email is required");
+            editTextPassword.setError("Password is required");
             editTextPassword.requestFocus();
             return;
         }
@@ -115,20 +126,18 @@ public class MainActivity extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String val = (String) snapshot.getValue();
                 progressBar.setVisibility(View.GONE);
+                Intent intent;
                 if(val.equals("BUYER")){
-                    Intent intent = new Intent(MainActivity.this, AfterLoginBuyer.class);
-                    intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    finish();
-                    startActivity(intent);
+                    intent = new Intent(MainActivity.this, AfterLoginBuyer.class);
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(), AfterLoginSeller.class);
+                    intent = new Intent(getApplicationContext(), AfterLoginSeller.class);
                     intent.putExtra(EMAIL_ID,mUser.getEmail());
                     intent.putExtra(ACTIVITY_NAME,"MAIN");
-                    intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    finish();
-                    startActivity(intent);
                 }
+                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
