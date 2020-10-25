@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BlendMode;
 import android.media.audiofx.Visualizer;
 import android.os.Bundle;
 import android.text.InputType;
@@ -146,49 +147,55 @@ public class ViewCart extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mRef.child("CART").child(email).addValueEventListener(new ValueEventListener() {
+        mRef.child("CART").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                temp.clear();
-                shoppingCart.clear();
-                totalCost = 0;
-                for (DataSnapshot single : snapshot.getChildren()) {
-                    final String categoryIndex, index, name, price, quantity;
-                    categoryIndex = single.child("itemCategoryIndex").getValue().toString();
-                    index = single.child("itemIndex").getValue().toString();
-                    name = single.child("itemName").getValue().toString();
-                    quantity = single.child("itemQuantity").getValue().toString();
-                    price = single.child("itemPrice").getValue().toString();
-                    temp.add(new ProductCart(categoryIndex, index, name, price, quantity, false));
-                }
-                mRefSellerProducts.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (ProductCart x : temp) {
-                            final String categoryIndex, index, name, price, quantity;
-                            categoryIndex = x.getItemCategoryIndex();
-                            index = x.getItemIndex();
-                            name = x.getItemName();
-                            quantity = x.getItemQuantity();
-                            price = x.getItemPrice();
-                            totalCost += Integer.parseInt(price)*Integer.parseInt(quantity);
-                            String available = snapshot.child(categoryIndex).child("PRODUCTS").child(index).child("quantity").getValue().toString();
-                            if (Integer.parseInt(available) < Integer.parseInt(quantity)) {
-                                shoppingCart.add(new ProductCart(categoryIndex, index, name, price, quantity, true));
-                                check = false;
-                            } else
-                                shoppingCart.add(new ProductCart(categoryIndex, index, name, price, quantity, false));
+                if(snapshot.child(email).exists()) {
+                    temp.clear();
+                    shoppingCart.clear();
+                    totalCost = 0;
+                    for (DataSnapshot single : snapshot.child(email).getChildren()) {
+                        final String categoryIndex, index, name, price, quantity;
+                        categoryIndex = single.child("itemCategoryIndex").getValue().toString();
+                        index = single.child("itemIndex").getValue().toString();
+                        name = single.child("itemName").getValue().toString();
+                        quantity = single.child("itemQuantity").getValue().toString();
+                        price = single.child("itemPrice").getValue().toString();
+                        temp.add(new ProductCart(categoryIndex, index, name, price, quantity, false));
+                    }
+                    mRefSellerProducts.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (ProductCart x : temp) {
+                                final String categoryIndex, index, name, price, quantity;
+                                categoryIndex = x.getItemCategoryIndex();
+                                index = x.getItemIndex();
+                                name = x.getItemName();
+                                quantity = x.getItemQuantity();
+                                price = x.getItemPrice();
+                                totalCost += Integer.parseInt(price) * Integer.parseInt(quantity);
+                                String available = snapshot.child(categoryIndex).child("PRODUCTS").child(index).child("quantity").getValue().toString();
+                                if (Integer.parseInt(available) < Integer.parseInt(quantity)) {
+                                    shoppingCart.add(new ProductCart(categoryIndex, index, name, price, quantity, true));
+                                    check = false;
+                                } else
+                                    shoppingCart.add(new ProductCart(categoryIndex, index, name, price, quantity, false));
+                            }
+                            CartAdapter adapter = new CartAdapter(getApplicationContext(), shoppingCart);
+                            recyclerView.setAdapter(adapter);
+                            textViewTotalPrice.setText("The total cost is " + totalCost.toString());
+
                         }
-                        CartAdapter adapter = new CartAdapter(getApplicationContext(), shoppingCart);
-                        recyclerView.setAdapter(adapter);
-                        textViewTotalPrice.setText("The total cost is " + totalCost.toString());
 
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }
+                if(shoppingCart.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Cart is Empty", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
