@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +42,7 @@ public class ViewMySpecificOrder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_my_specific_order);
+        setContentView(R.layout.view_my_specific_order);
         buttonConfirmOrderDelivery = findViewById(R.id.buttonConfirmOrderDelivery);
         recyclerViewSpecificOrder = findViewById(R.id.recyclerViewSpecificOrder);
         recyclerViewSpecificOrder.setHasFixedSize(true);
@@ -76,7 +75,7 @@ public class ViewMySpecificOrder extends AppCompatActivity {
 
     private void OrderDelivered() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ViewMySpecificOrder.this, R.style.AlertDialog);
-        builder.setTitle("Pls Enter 'CONFIRM' to confirm delivery");
+        builder.setTitle("Please Type 'CONFIRM' to confirm delivery");
         final EditText editTextConfirm = new EditText(ViewMySpecificOrder.this);
         builder.setView(editTextConfirm);
 

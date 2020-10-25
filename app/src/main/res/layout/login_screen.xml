@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
         android:hint="email"
+        android:textColor="#ffffff"
         android:inputType="textEmailAddress"
         android:paddingBottom="15dp"
         android:textColorHint="#70FFFFFF"
+        style="@style/CardView"
         android:textColorLink="#7FE22A"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,17 +50,17 @@
         app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextEmail"
-        app:srcCompat="@drawable/user_1" />
+        app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="129dp"
         android:layout_height="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rounded_button_transparent"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="@font/montserrat"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
         android:includeFontPadding="false"
         android:padding="3dp"
         android:text="Create Account"
@@ -79,6 +81,7 @@
         android:layout_height="43dp"
         android:layout_gravity="center"
         android:layout_margin="7dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button_transparent"
         android:fontFamily="@font/montserrat"
@@ -95,15 +98,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.45"
-        app:srcCompat="@drawable/vector" />
+        app:srcCompat="@drawable/store_icon" />
 
     <TextView
         android:id="@+id/textView2"
@@ -128,16 +131,19 @@
         app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextPassword"
-        app:srcCompat="@drawable/key__1__1" />
+        app:srcCompat="@drawable/key" />
 
     <TextView
         android:id="@+id/forgotpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="129dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Forgot Password?"
-        android:textSize="15sp"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
         app:layout_constraintHorizontal_bias="0.004"
@@ -147,11 +153,14 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
+        android:gravity="center_vertical"
         android:hint="password"
+        android:textColor="#ffffff"
+        style="@style/CardView"
         android:inputType="textPassword"
         android:paddingBottom="15dp"
         android:textColorHint="#70FFFFFF"

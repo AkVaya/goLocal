@@ -3,7 +3,6 @@ package com.example.android.golocalfinal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,7 @@ public class EditSellerProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_seller_profile);
+        setContentView(R.layout.edit_seller_profile);
 
         shopAddress = (EditText) findViewById(R.id.outletAddress);
         shopName = (EditText) findViewById(R.id.outletName);
