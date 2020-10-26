@@ -98,24 +98,38 @@ public class ViewCart extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Can't Place Order, Cart Empty",Toast.LENGTH_SHORT).show();
         }
         else{
-            String inc = "incomplete";
             String key = mRefSeller.push().getKey();
-            mRefSeller.child("Orders").child(key).child("buyerList").setValue(shoppingCart);
-            mRefSeller.child("Orders").child(key).child("buyerName").setValue(Name);
+
+            HashMap temp = new HashMap<>();
+            temp.put("list",shoppingCart);
+            temp.put("name",shopName);
+            temp.put("contact",shopContact);
+            temp.put("cost",totalCost);
+            temp.put("email",email);
+            temp.put("status","incomplete");
+            temp.put("key",key);
+
+            HashMap temp2 = new HashMap<>();
+            temp2.put("buyerList",shoppingCart);
+            temp2.put("buyerName",Name);
+            temp2.put("buyerNumber",PhoneNumber);
+            temp2.put("buyerAddress",Address);
+            temp2.put("buyerEmail",mUser.getEmail().replace('.',','));
+            temp2.put("totalCost",totalCost);
+            temp2.put("key",key);
+            temp2.put("status","incomplete");
+
+            mRefSeller.child("Orders").child(key).setValue(temp2);
+                    //child("buyerList").setValue(shoppingCart);
+            /*mRefSeller.child("Orders").child(key).child("buyerName").setValue(Name);
             mRefSeller.child("Orders").child(key).child("buyerNumber").setValue(PhoneNumber);
             mRefSeller.child("Orders").child(key).child("buyerAddress").setValue(Address);
             mRefSeller.child("Orders").child(key).child("buyerEmail").setValue(mUser.getEmail().replace('.',','));
             mRefSeller.child("Orders").child(key).child("totalCost").setValue(totalCost);
             mRefSeller.child("Orders").child(key).child("key").setValue(key);
-            mRefSeller.child("Orders").child(key).child("status").setValue(inc);
-
-            mRef.child("yourOrders").child(key).child("list").setValue(shoppingCart);
-            mRef.child("yourOrders").child(key).child("name").setValue(shopName);
-            mRef.child("yourOrders").child(key).child("contact").setValue(shopContact);
-            mRef.child("yourOrders").child(key).child("cost").setValue(totalCost);
-            mRef.child("yourOrders").child(key).child("email").setValue(email);
-            mRef.child("yourOrders").child(key).child("key").setValue(key);
-            mRef.child("yourOrders").child(key).child("status").setValue(inc);
+            mRefSeller.child("Orders").child(key).child("status").setValue("incomplete");
+*/
+            mRef.child("yourOrders").child(key).setValue(temp);
 
             mRefSellerProducts.addValueEventListener(new ValueEventListener() {
                 @Override

@@ -87,7 +87,8 @@ public class ViewMySpecificOrder extends AppCompatActivity {
                     mRefSeller.child(email).child("Orders").child(orderId).child("status").setValue("complete");
                     mRef.child("status").setValue("complete");
                     Toast.makeText(getApplicationContext(),"Congrats, Your Order has been Delivered", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ViewMySpecificOrder.this,BuyerOrders.class));
+                  //  startActivity(new Intent(ViewMySpecificOrder.this,BuyerOrders.class));
+                    finish();
                 } else{
                     Toast.makeText(getApplicationContext(), "Order Delivery Not Confirmed", Toast.LENGTH_SHORT).show();
                 }

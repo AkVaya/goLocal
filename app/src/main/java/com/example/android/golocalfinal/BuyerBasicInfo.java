@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class BuyerBasicInfo extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class BuyerBasicInfo extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
-    List<String> cityList;
+    HashSet<String> cityList;
     BuyerInformation buyerInformation;
 
     @Override
@@ -52,7 +53,7 @@ public class BuyerBasicInfo extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         intent = getIntent();
-        cityList = new ArrayList<>();
+        cityList = new HashSet<String>();
         final String Email = intent.getExtras().getString(SignUpActivity.EMAIL_ID);
         final String Password = intent.getExtras().getString(SignUpActivity.PASSWORD);
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +73,13 @@ public class BuyerBasicInfo extends AppCompatActivity {
                 cityList.clear();
                 for(DataSnapshot shops : snapshot.getChildren()){
                     String city = shops.child("outletCity").getValue().toString();
-                    cityList.add(city);
+                    cityList.add(city.toUpperCase());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, cityList);
+                List<String> temp = new ArrayList<>();
+                for(String x : cityList){
+                    temp.add(x);
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, temp);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 userCity.setAdapter(adapter);
             }
