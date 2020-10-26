@@ -11,13 +11,16 @@ import android.content.Intent;
 import android.graphics.BlendMode;
 import android.media.audiofx.Visualizer;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class ViewCart extends AppCompatActivity {
@@ -77,7 +82,7 @@ public class ViewCart extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(ViewCart.this, R.style.AlertDialog);
             builder.setTitle("Sorry!");
             final TextView textViewMessage = new TextView(ViewCart.this);
-            
+
             textViewMessage.setText("Can't Place Order : Quantity Entered is more than Available");
             builder.setView(textViewMessage);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -93,6 +98,7 @@ public class ViewCart extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Can't Place Order, Cart Empty",Toast.LENGTH_SHORT).show();
         }
         else{
+            String inc = "incomplete";
             String key = mRefSeller.push().getKey();
             mRefSeller.child("Orders").child(key).child("buyerList").setValue(shoppingCart);
             mRefSeller.child("Orders").child(key).child("buyerName").setValue(Name);
@@ -101,7 +107,7 @@ public class ViewCart extends AppCompatActivity {
             mRefSeller.child("Orders").child(key).child("buyerEmail").setValue(mUser.getEmail().replace('.',','));
             mRefSeller.child("Orders").child(key).child("totalCost").setValue(totalCost);
             mRefSeller.child("Orders").child(key).child("key").setValue(key);
-            mRefSeller.child("Orders").child(key).child("status").setValue("incomplete");
+            mRefSeller.child("Orders").child(key).child("status").setValue(inc);
 
             mRef.child("yourOrders").child(key).child("list").setValue(shoppingCart);
             mRef.child("yourOrders").child(key).child("name").setValue(shopName);
@@ -109,12 +115,12 @@ public class ViewCart extends AppCompatActivity {
             mRef.child("yourOrders").child(key).child("cost").setValue(totalCost);
             mRef.child("yourOrders").child(key).child("email").setValue(email);
             mRef.child("yourOrders").child(key).child("key").setValue(key);
-            mRef.child("yourOrders").child(key).child("status").setValue("incomplete");
+            mRef.child("yourOrders").child(key).child("status").setValue(inc);
 
             mRefSellerProducts.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(!complete){
+                   if(!complete){
                         for(ProductCart curr : shoppingCart){
                             Integer avail = Integer.parseInt(snapshot.child(curr.getItemCategoryIndex()).child("PRODUCTS").child(curr.getItemIndex()).child("quantity").getValue().toString());
                             avail -= Integer.parseInt(curr.getItemQuantity());
@@ -124,7 +130,9 @@ public class ViewCart extends AppCompatActivity {
                         shoppingCart.clear();
                         mRef.child("CART").child(email).setValue(shoppingCart);
                         Toast.makeText(getApplicationContext(),"Order Place",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ViewCart.this,AfterLoginBuyer.class));
+                        Intent intent = new Intent(ViewCart.this,AfterLoginBuyer.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         complete = true;
                     }
                 }
@@ -188,9 +196,7 @@ public class ViewCart extends AppCompatActivity {
                         }
                     });
                 }
-                if(shoppingCart.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Cart is Empty", Toast.LENGTH_SHORT).show();
-                }
+
             }
 
             @Override

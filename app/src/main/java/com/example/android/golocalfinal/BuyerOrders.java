@@ -55,22 +55,23 @@ public class BuyerOrders extends AppCompatActivity {
                 deliveredList.clear();
                 Integer i = 0;
                 for(DataSnapshot order : snapshot.getChildren()){
-                    String shopName = order.child("name").getValue().toString();
-                    String totalCost = order.child("cost").getValue().toString();
-                    String status = order.child("status").getValue().toString();
-                    String image= "";
+                    if(order.child("name").exists()) {
+                        String shopName = order.child("name").getValue().toString();
+                        String totalCost = order.child("cost").getValue().toString();
+                        String status = order.child("status").getValue().toString();
+                        String image = "";
 
-                    String id = order.child("key").getValue().toString();
-                    String number = order.child("contact").getValue().toString();
-                    if(status.equals("incomplete")) {
-                        orderList.add(new ProductBuyer(shopName, totalCost, status,image));
+                        String id = order.child("key").getValue().toString();
+                        String number = order.child("contact").getValue().toString();
+                        if (status.equals("incomplete")) {
+                            orderList.add(new ProductBuyer(shopName, totalCost, status, image));
+                        } else {
+                            deliveredList.add(new ProductBuyer(shopName, totalCost, status, image));
+                        }
+                        orderIds.put(i, id);
+                        numbersId.put(i, number);
+                        i++;
                     }
-                    else{
-                        deliveredList.add(new ProductBuyer(shopName, totalCost, status,image));
-                    }
-                    orderIds.put(i,id);
-                    numbersId.put(i,number);
-                    i++;
                 }
                 orderList.addAll(deliveredList);
                 recyclerViewMyOrders.setAdapter(new MyOrdersAdapter(getApplicationContext(), orderList, new MyOrdersAdapter.onNoteListener() {
