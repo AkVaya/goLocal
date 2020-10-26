@@ -49,11 +49,13 @@
 
     <EditText
         android:id="@+id/editTextPassword"
+        android:textColor="#ffffff"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:hint="password"
+        style="@style/CardView"
         android:inputType="textPassword"
         android:paddingBottom="15dp"
         android:textColorHint="#70FFFFFF"
@@ -65,14 +67,15 @@
 
     <EditText
         android:id="@+id/editTextEmail"
+        android:textColor="#ffffff"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
+        style="@style/CardView"
         android:hint="email"
         android:inputType="textEmailAddress"
         android:paddingBottom="15dp"
         android:textColorHint="#70FFFFFF"
-        android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,14 +97,14 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.45"
-        app:srcCompat="@drawable/vector" />
+        app:srcCompat="@drawable/store_icon" />
 
     <TextView
         android:id="@+id/textView3"
@@ -124,7 +127,7 @@
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:srcCompat="@drawable/key__1__1" />
+        app:srcCompat="@drawable/key" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -135,7 +138,7 @@
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextEmail"
-        app:srcCompat="@drawable/user_1" />
+        app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <TextView
         android:id="@+id/login"

@@ -17,8 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.ref.Reference;
-
 public class ViewSellerProfile extends AppCompatActivity {
 
     DatabaseReference mRef;
@@ -28,7 +26,7 @@ public class ViewSellerProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_seller_profile);
+        setContentView(R.layout.view_seller_profile);
         mAuth = FirebaseAuth.getInstance();
         outletName = (TextView) findViewById(R.id.shopName);
         outletCity = (TextView) findViewById(R.id.shopCity);

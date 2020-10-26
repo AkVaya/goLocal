@@ -11,11 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".EditBuyerProfile"></activity>
-        <activity android:name=".ViewMySpecificOrder"></activity>
+        <activity android:name=".EditBuyerProfile"/>
+        <activity android:name=".ViewMySpecificOrder"/>
 
 
-        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".ForgotPassword"/>
 
         <activity android:name=".ViewBuyerProfile" />
         <activity android:name=".BuyerOrders" />
@@ -61,6 +61,8 @@
             android:label="" />
         <activity android:name=".SellerBasicInfo" />
         <activity android:name=".BuyerBasicInfo" />
+        <activity android:name=".SellerSpecificOrderDelivered" />
+        <activity android:name=".SellerSpecificOrderPending" />
         <activity
             android:name=".CategorySpecificInfo"
             android:label=""

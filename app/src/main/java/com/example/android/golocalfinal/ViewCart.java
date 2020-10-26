@@ -51,7 +51,7 @@ public class ViewCart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_cart);
+        setContentView(R.layout.view_cart);
         recyclerView = findViewById(R.id.recyclerViewCart);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -82,7 +82,7 @@ public class ViewCart extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(ViewCart.this, R.style.AlertDialog);
             builder.setTitle("Sorry!");
             final TextView textViewMessage = new TextView(ViewCart.this);
-            
+
             textViewMessage.setText("Can't Place Order : Quantity Entered is more than Available");
             builder.setView(textViewMessage);
             builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -99,27 +99,42 @@ public class ViewCart extends AppCompatActivity {
         }
         else{
             String key = mRefSeller.push().getKey();
-            mRefSeller.child("Orders").child(key).child("buyerList").setValue(shoppingCart);
-            mRefSeller.child("Orders").child(key).child("buyerName").setValue(Name);
+
+            HashMap temp = new HashMap<>();
+            temp.put("list",shoppingCart);
+            temp.put("name",shopName);
+            temp.put("contact",shopContact);
+            temp.put("cost",totalCost);
+            temp.put("email",email);
+            temp.put("status","incomplete");
+            temp.put("key",key);
+
+            HashMap temp2 = new HashMap<>();
+            temp2.put("buyerList",shoppingCart);
+            temp2.put("buyerName",Name);
+            temp2.put("buyerNumber",PhoneNumber);
+            temp2.put("buyerAddress",Address);
+            temp2.put("buyerEmail",mUser.getEmail().replace('.',','));
+            temp2.put("totalCost",totalCost);
+            temp2.put("key",key);
+            temp2.put("status","incomplete");
+
+            mRefSeller.child("Orders").child(key).setValue(temp2);
+                    //child("buyerList").setValue(shoppingCart);
+            /*mRefSeller.child("Orders").child(key).child("buyerName").setValue(Name);
             mRefSeller.child("Orders").child(key).child("buyerNumber").setValue(PhoneNumber);
             mRefSeller.child("Orders").child(key).child("buyerAddress").setValue(Address);
             mRefSeller.child("Orders").child(key).child("buyerEmail").setValue(mUser.getEmail().replace('.',','));
             mRefSeller.child("Orders").child(key).child("totalCost").setValue(totalCost);
             mRefSeller.child("Orders").child(key).child("key").setValue(key);
             mRefSeller.child("Orders").child(key).child("status").setValue("incomplete");
-
-            mRef.child("yourOrders").child(key).child("list").setValue(shoppingCart);
-            mRef.child("yourOrders").child(key).child("name").setValue(shopName);
-            mRef.child("yourOrders").child(key).child("contact").setValue(shopContact);
-            mRef.child("yourOrders").child(key).child("cost").setValue(totalCost);
-            mRef.child("yourOrders").child(key).child("email").setValue(email);
-            mRef.child("yourOrders").child(key).child("key").setValue(key);
-            mRef.child("yourOrders").child(key).child("status").setValue("incomplete");
+*/
+            mRef.child("yourOrders").child(key).setValue(temp);
 
             mRefSellerProducts.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(!complete){
+                   if(!complete){
                         for(ProductCart curr : shoppingCart){
                             Integer avail = Integer.parseInt(snapshot.child(curr.getItemCategoryIndex()).child("PRODUCTS").child(curr.getItemIndex()).child("quantity").getValue().toString());
                             avail -= Integer.parseInt(curr.getItemQuantity());
@@ -129,7 +144,9 @@ public class ViewCart extends AppCompatActivity {
                         shoppingCart.clear();
                         mRef.child("CART").child(email).setValue(shoppingCart);
                         Toast.makeText(getApplicationContext(),"Order Place",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ViewCart.this,AfterLoginBuyer.class));
+                        Intent intent = new Intent(ViewCart.this,AfterLoginBuyer.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         complete = true;
                     }
                 }
@@ -193,9 +210,7 @@ public class ViewCart extends AppCompatActivity {
                         }
                     });
                 }
-                if(shoppingCart.isEmpty()){
-                    Toast.makeText(getApplicationContext(),"Cart is Empty", Toast.LENGTH_SHORT).show();
-                }
+
             }
 
             @Override

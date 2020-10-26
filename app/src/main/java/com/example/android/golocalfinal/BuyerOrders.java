@@ -26,7 +26,8 @@ public class BuyerOrders extends AppCompatActivity {
     FirebaseUser mUser;
     List<ProductBuyer> orderList,deliveredList;
     final static String ORDER_ID = "ORDER_ID", SHOP_NUMBER = "SHOP_NUMBER";
-    HashMap<Integer,String> orderIds, numbersId;
+    HashMap<Integer,String> orderIds;
+    HashMap<String, String> numbersId;
 
 
     @Override
@@ -41,7 +42,7 @@ public class BuyerOrders extends AppCompatActivity {
         orderList = new ArrayList<>();
         deliveredList = new ArrayList<>();
         orderIds = new HashMap<>();
-        numbersId = new HashMap<>();
+        numbersId = new HashMap<String, String>();
     }
 
     @Override
@@ -55,30 +56,31 @@ public class BuyerOrders extends AppCompatActivity {
                 deliveredList.clear();
                 Integer i = 0;
                 for(DataSnapshot order : snapshot.getChildren()){
-                    String shopName = order.child("name").getValue().toString();
-                    String totalCost = order.child("cost").getValue().toString();
-                    String status = order.child("status").getValue().toString();
-                    String image= "";
 
-                    String id = order.child("key").getValue().toString();
-                    String number = order.child("contact").getValue().toString();
-                    if(status.equals("incomplete")) {
-                        orderList.add(new ProductBuyer(shopName, totalCost, status,image));
-                    }
-                    else{
-                        deliveredList.add(new ProductBuyer(shopName, totalCost, status,image));
-                    }
-                    orderIds.put(i,id);
-                    numbersId.put(i,number);
-                    i++;
+                        String shopName = order.child("name").getValue().toString();
+                        String totalCost = order.child("cost").getValue().toString();
+                        String status = order.child("status").getValue().toString();
+
+
+                        String id = order.child("key").getValue().toString();
+                        String number = order.child("contact").getValue().toString();
+                        if (status.equals("incomplete")) {
+                            orderList.add(new ProductBuyer(shopName, totalCost, status, id));
+                        } else {
+                            deliveredList.add(new ProductBuyer(shopName, totalCost, status, id));
+                        }
+
+                        numbersId.put(id, number);
+
+
                 }
                 orderList.addAll(deliveredList);
                 recyclerViewMyOrders.setAdapter(new MyOrdersAdapter(getApplicationContext(), orderList, new MyOrdersAdapter.onNoteListener() {
                     @Override
                     public void onNoteClick(int position) {
                         Intent intent = new Intent(getApplicationContext(),ViewMySpecificOrder.class);
-                        intent.putExtra(ORDER_ID,orderIds.get(position));
-                        intent.putExtra(SHOP_NUMBER,numbersId.get(position));
+                        intent.putExtra(ORDER_ID,orderList.get(position).getImageURL());
+                        intent.putExtra(SHOP_NUMBER,numbersId.get(orderList.get(position).getImageURL()));
                         startActivity(intent);
                     }
                 }));

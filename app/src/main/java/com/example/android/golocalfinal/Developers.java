@@ -3,7 +3,6 @@ package com.example.android.golocalfinal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,7 +13,7 @@ public class Developers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_developers);
+        setContentView(R.layout.developers);
 
         vasu = (ImageView) findViewById(R.id.imageView13);
         vaya = (ImageView) findViewById(R.id.imageView12);
